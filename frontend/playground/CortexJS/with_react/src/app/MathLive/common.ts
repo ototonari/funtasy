@@ -1,7 +1,7 @@
 import { MathfieldElement } from "mathlive";
 
 export const createMfeElement = (formula: string): MathfieldElement => {
-  const mfe = new MathfieldElement();
+  const mfe = new MathfieldElement();  
   mfe.setAttribute("virtual-keyboard-mode", "manual");
   mfe.setAttribute("style", innerStyle);
   mfe.innerText = formula;
@@ -21,7 +21,7 @@ height: 50px;
 
 export const createReadonlyMfeElement = (formula: string): MathfieldElement => {
   const mfe = new MathfieldElement();
-  // mfe.setAttribute("read-only", "");
+  mfe.setAttribute("read-only", "");
   mfe.setAttribute("style", readOnlyStyle);
   mfe.innerText = formula;
   return mfe;

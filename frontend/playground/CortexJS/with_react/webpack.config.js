@@ -1,4 +1,3 @@
-const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -18,7 +17,7 @@ module.exports = {
     }),
   ],
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: __dirname + '/public',
     filename: 'build/[name].[contenthash].js'
   },
   resolve: {
