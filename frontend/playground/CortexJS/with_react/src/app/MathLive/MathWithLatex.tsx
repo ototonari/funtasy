@@ -7,12 +7,17 @@ export const MathWithLatex: React.FC<{ initFormula?: string }> = ({
   const ref = useRef(null);
   const [formula, setFormula] = useState(initFormula);
   const elm = createMfeElement(formula);
+  const handleInput = () => {
+    setFormula(elm.value);
+  };
 
   useEffect(() => {
-    elm.addEventListener("input", (ev) => {
-      setFormula(elm.value);
-    });
+    elm.addEventListener("input", handleInput);
     ref.current.appendChild(elm);
+
+    return () => {
+      elm.removeEventListener("input", handleInput);
+    };
   }, []);
 
   return (
@@ -25,7 +30,7 @@ export const MathWithLatex: React.FC<{ initFormula?: string }> = ({
         <label>Latex</label>
         <br />
         <textarea
-          style={{width: 300}}
+          style={{ width: 300 }}
           value={formula}
           onChange={(e) => {
             setFormula(e.target.value);
@@ -35,6 +40,11 @@ export const MathWithLatex: React.FC<{ initFormula?: string }> = ({
           autoCorrect="off"
           spellCheck={false}
         />
+      </div>
+      <div>
+        <label>Result</label>
+        <br />
+        <textarea />
       </div>
     </>
   );

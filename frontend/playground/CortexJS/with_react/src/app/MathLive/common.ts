@@ -13,9 +13,8 @@ style="
 vertical-align: middle;
 border-radius: 4px;
 border: 1px solid rgba(0, 0, 0, .3);
-padding-left: 10px; padding-top: 10px;
+padding-left: 10px;
 max-width: 300px;
-height: 50px;
 
 "`;
 
