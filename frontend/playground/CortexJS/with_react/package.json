@@ -1,0 +1,27 @@
+{
+  "name": "funtasy_demo",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf ./node_modules package-lock.json && npm i",
+    "upgrade": "npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact",
+    "build": "webpack --mode=production",
+    "_start": "webpack-dev-server -d --content-base ./public",
+    "start": "npx webpack serve --mode=development"
+  },
+  "dependencies": {
+    "@cortex-js/compute-engine": "^0.6.0",
+    "@types/react": "18.0.15",
+    "@types/react-dom": "18.0.6",
+    "clean-webpack-plugin": "^4.0.0",
+    "html-webpack-plugin": "^5.5.0",
+    "mathlive": "^0.77.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
