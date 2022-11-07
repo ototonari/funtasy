@@ -1,34 +1,25 @@
 import React from "react";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import { DesmosContainer } from "../Desmos/DesmosContainer";
 import { Graph } from "../Desmos/Graph";
 import { Sample } from "../Desmos/Sample";
+import { useTracking } from "../hooks/useTracking";
 import { Practice } from "../MathLive/Practice";
 import { Teach, TeachProps } from "../Teach";
 
-export const Root: React.FC = (props) => {
-  const teachProps: TeachProps = {
-    concept: "数と式",
-    articles: [
-      {
-        title: "指数の計算",
-        description: "",
-        example: 
-          {
-            formula: "a^2b * ab^3",
-            steps: ["= a^{2+1}b^{1+3}", "= a^3b^4"]
-          }
-        
-      }
-    ]
-  }
+const root: React.FC = (props) => {
+  useTracking("G-50B0DEDJLN");
+  
   return (
     <div>
-      {/* <MathWithLatex initFormula={"x=\\frac{-b\\pm \\sqrt{b^2-4ac}}{2a}"} /> */}
-      <Teach {...teachProps} />
-      <Practice question="a^2b * ab^3"  />
-      <DesmosContainer >
+      <Link to={`/`} >Top</Link>
+      <Link to={`concepts/1`} >数と式</Link>
+      <Outlet />
+      {/* <DesmosContainer>
         <Graph />
-      </DesmosContainer>
+      </DesmosContainer> */}
     </div>
   );
 };
+
+export const Root = React.memo(root, () => true);
