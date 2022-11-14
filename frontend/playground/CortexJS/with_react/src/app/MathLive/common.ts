@@ -8,6 +8,13 @@ export const createMfeElement = (formula: string): MathfieldElement => {
   return mfe;
 };
 
+export const createMfeWithoutKeyboardElement = (formula: string): MathfieldElement => {
+  const mfe = new MathfieldElement();  
+  mfe.setAttribute("style", innerStyle);
+  mfe.innerText = formula;
+  return mfe;
+};
+
 const innerStyle = `
 style="
 vertical-align: middle;

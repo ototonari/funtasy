@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { ce } from "../ComputeEngine";
 import { createMfeElement } from "./common";
 
 export const MathWithLatex: React.FC<{ initFormula?: string }> = ({
@@ -10,6 +11,7 @@ export const MathWithLatex: React.FC<{ initFormula?: string }> = ({
   const handleInput = () => {
     setFormula(elm.value);
   };
+  const box = ce.parse(formula);
 
   useEffect(() => {
     elm.addEventListener("input", handleInput);
@@ -32,9 +34,6 @@ export const MathWithLatex: React.FC<{ initFormula?: string }> = ({
         <textarea
           style={{ width: 300 }}
           value={formula}
-          onChange={(e) => {
-            setFormula(e.target.value);
-          }}
           autoCapitalize="off"
           autoComplete="off"
           autoCorrect="off"
@@ -42,9 +41,16 @@ export const MathWithLatex: React.FC<{ initFormula?: string }> = ({
         />
       </div>
       <div>
-        <label>Result</label>
+        <label>BoxedExpression</label>
         <br />
-        <textarea />
+        <textarea
+          style={{ width: 400, height: 100 }}
+          value={JSON.stringify(box.json)}
+          autoCapitalize="off"
+          autoComplete="off"
+          autoCorrect="off"
+          spellCheck={false}
+        />
       </div>
     </>
   );

@@ -1,12 +1,18 @@
 import React, { useEffect } from "react";
 import { Base } from "./Base";
-import { createMfeElement } from "./common";
+import { createMfeWithoutKeyboardElement } from "./common";
 
-export const MathInput: React.FC<{ formula?: string; onChange?: (formula: string) => void }> = ({
+type Props = {
+  formula?: string;
+  onChange?: (formula: string) => void
+}
+
+export const MathInput: React.FC<Props> = ({
   formula = "",
   onChange,
 }) => {
-  const elm = createMfeElement(formula);
+  const elm = createMfeWithoutKeyboardElement(formula);
+
   const onChangeHandler = (ev: Event) => {
     const event = ev as any;
     const value = event.target.value;

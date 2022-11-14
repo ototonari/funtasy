@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link 
-      rel="stylesheet" 
-      href="https://unpkg.com/mathlive/dist/mathlive-static.css" 
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/mathlive/dist/mathlive-static.css"
     />
-  <title>Document</title>
-</head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-50B0DEDJLN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <!-- <script src="//unpkg.com/@cortex-js/compute-engine"></script> -->
+    <title>Document</title>
+  </head>
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-50B0DEDJLN"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
 
-  gtag('config', 'G-50B0DEDJLN');
-</script>
-<body>
-  <div id="root"></div>
-  <div id="mfe"></div>
-  <div id="calculator" style="width: 600px; height: 400px;"></div>
-</body>
+    gtag("config", "G-50B0DEDJLN");
+  </script>
+  <body>
+    <div id="root"></div>
+    <div id="mfe"></div>
+    <div id="calculator" style="width: 600px; height: 400px"></div>
+  </body>
 </html>
