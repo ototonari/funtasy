@@ -4,7 +4,7 @@ import { DesmosContainer } from "../Desmos/DesmosContainer";
 import { Graph } from "../Desmos/Graph";
 import { Sample } from "../Desmos/Sample";
 import { useTracking } from "../hooks/useTracking";
-import { Practice } from "../MathLive/Practice";
+import { SimplifyPractice } from "../MathLive/SimplifyPractice";
 import { Teach, TeachProps } from "../Teach";
 
 const root: React.FC = (props) => {

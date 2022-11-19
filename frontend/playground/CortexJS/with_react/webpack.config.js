@@ -5,8 +5,8 @@ module.exports = {
   entry: './src/app/index.tsx',
   devtool: 'inline-source-map',
   watchOptions: {
-    aggregateTimeout: 2000,
-    poll: 2000,
+    aggregateTimeout: 1000,
+    poll: 1000,
   },
   plugins: [
     new CleanWebpackPlugin({

@@ -4,7 +4,7 @@ import { MathReadonly } from "./MathReadonly";
 import { MathInput } from "./MathInput";
 import { ce } from "../ComputeEngine";
 
-type Props = {
+type PracticeProps = {
   question: string;
 };
 
@@ -12,7 +12,8 @@ const isSimplify = (a: BoxedExpression, b: BoxedExpression): boolean => {
   return a.simplify().isSame(b);
 };
 
-export const Practice: React.FC<Props> = ({ question }) => {
+// Simplify な問題フォーム
+export const SimplifyPractice: React.FC<PracticeProps> = ({ question }) => {
   const qExpr = ce.parse(question);
   const [answer, setAnswer] = useState("");
   const [result, setResult] = useState(false);

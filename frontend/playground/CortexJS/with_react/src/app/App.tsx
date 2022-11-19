@@ -1,27 +1,21 @@
-import React, { useState } from "react";
-import { AutoGrid } from "./Container";
-import { Debug, GuideStatus } from "./database/concepts/LocalStorage";
-import { numbersAndExpressions } from "./database/concepts/numbers_and_expressions";
-import { presets } from "./database/questions";
-import { DesmosContainer } from "./Desmos/DesmosContainer";
-import { Graph } from "./Desmos/Graph";
+import React, { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import { Debug } from "./database/concepts/LocalStorage";
+import { Graph } from "./FunctionProt/Graph";
 import { MathWithLatex } from "./MathLive/MathWithLatex";
-import { Practice } from "./MathLive/Practice";
-import { Check } from "./Scenario/Check";
-import { Guide } from "./Scenario/Guide";
-import { TeachProps, Teach } from "./Teach";
+import { ModalRouting, modalState } from "./ModalRouting";
 
-const guideOrStart = (guideStatus: boolean, setter: (s: boolean) => void) => !guideStatus ? <Guide setter={setter} /> : <Check questions={presets} />
+import { Routing } from "./Routing";
 
 export const App = () => {
   Debug.showStatus();
-
-  const [guideStatus, setGuideStatus] = useState(GuideStatus.get());
-
+  
   return (
     <div>
-      <MathWithLatex initFormula={"x=\\frac{-b\\pm \\sqrt{b^2-4ac}}{2a}"} />
-      {guideOrStart(guideStatus, setGuideStatus)}
+      <Routing />
+      <ModalRouting />
+      <Graph width={300} height={300} fn={"x^2"} />
+      <MathWithLatex initFormula={""} />
     </div>
   );
 };

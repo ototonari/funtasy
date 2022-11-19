@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useTracking } from "../../hooks/useTracking";
-import { Practice } from "../../MathLive/Practice";
+import { SimplifyPractice } from "../../MathLive/SimplifyPractice";
 import { Teach as TeachComponent, TeachProps } from "../../Teach";
 
 export const Concept: React.FC = (props) => {
@@ -23,7 +23,7 @@ export const Concept: React.FC = (props) => {
     <div>
       <TeachComponent {...teachProps} />
 
-      <Practice question="a^2b * ab^3" />
+      <SimplifyPractice question="a^2b * ab^3" />
     </div>
   );
 };

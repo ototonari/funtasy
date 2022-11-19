@@ -9,29 +9,24 @@ import { QuestionType } from "./common";
 import IconButton from '@mui/material/IconButton';
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
+import { MathInputInline } from "../MathLive/MathInputInline";
+import { MathInline } from "../MathLive/MathInline";
 
 
 type Props = QuestionType & {
-  setResult?: (s: boolean) => void;
-  feedback: boolean;
+  
 };
 
 // 数と式 問題フォーム
-export const QuestionWithAnswers: React.FC<Props> = ({
+export const Practice: React.FC<Props> = ({
   expression,
-  setResult,
-  feedback,
   answers,
   answerPlaceholder,
   conceptId
 }) => {
-  const [modalRoute, setModalRoute] = useRecoilState(modalState);
-  const aboutConcept = () => {
-    const conceptIds = [...modalRoute.conceptIds, conceptId]
-    setModalRoute({conceptIds})
-  }
   const [results, setResults] = useState(answers.map(() => false));
   const [userAnswers, setUserAnswers] = useState(answers.map(() => ""));
+  const [isOK, setOK] = useState(false);
 
   const setUserAnswer = (index: number) => (formula: string) => {
     userAnswers[index] = formula;
@@ -46,37 +41,27 @@ export const QuestionWithAnswers: React.FC<Props> = ({
     }
     console.log("results", results);
     setResults(results);
-
-    // 親コンポーネントに全ての回答が正解か否かを伝達する
-    setResult(results.every((r) => r === true));
+    setOK(results.every((r) => r));
   }
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={5}>
+    <Grid container spacing={2} sx={{ alignItems: "center" }}>
+      <Grid item xs={4} >
         <MathReadonly formula={expression} />
       </Grid>
-      {answerPlaceholder ? (
-        <Grid item xs={1}>
-          {answerPlaceholder}
-        </Grid>
-      ) : null}
       {answers.map((_, i) => (
-        <Grid item xs key={i}>
-          <MathInput onChange={setUserAnswer(i)} />
+        <Grid item xs key={i} sx={{ textAlign: 'center' }}>
+          <MathInputInline onChange={setUserAnswer(i)} />
+          { (answers.length -1 ) === i ? null : ", "}
         </Grid>
       ))}
       <Grid item xs={1}>
         {
-          feedback ? (
-            results.every((r) => r) ? (
-              <Check fontSize="large" color="success" />
-            ) : (
-              <IconButton onClick={aboutConcept} >
-                <Info fontSize="medium" color="primary" />
-              </IconButton>
-            )
-          ) : null
+          isOK ? (
+            <Check fontSize="large" color="success" />
+          ) : (
+            null
+          )
         }
       </Grid>
     </Grid>
