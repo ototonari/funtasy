@@ -15,7 +15,7 @@ export const App = () => {
       <Routing />
       <ModalRouting />
       <Graph width={300} height={300} fn={"x^2"} />
-      <MathWithLatex initFormula={""} />
+      <MathWithLatex />
     </div>
   );
 };

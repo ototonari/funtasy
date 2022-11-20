@@ -26,11 +26,11 @@ export const MathInputInline: React.FC<Props> = ({
     ref.current.appendChild(mfe);
   }, []);
 
-  return <div style={{display: "inline-block"}} ref={ref} />
+  return <div style={{display: "inline-block", width: "100%" }} ref={ref} />
 };
 
 const inlineStyle = `
 border-radius: 4px;
 border: 1px solid rgba(0, 0, 0, .3);
-width: 110px;
+width: 100%;
 `

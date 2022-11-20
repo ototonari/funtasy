@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BoxedExpression } from "@cortex-js/compute-engine";
 import { MathReadonly } from "../MathLive/MathReadonly";
 import { MathInput } from "../MathLive/MathInput";
-import { ce, NewCE } from "../ComputeEngine";
+import { ce } from "../ComputeEngine";
 import { Grid } from "@mui/material";
 import { Check, WarningAmber, Info } from "@mui/icons-material";
 import { QuestionType } from "./common";
@@ -16,7 +16,7 @@ type Props = QuestionType & {
   feedback: boolean;
 };
 
-// 数と式 問題フォーム
+
 export const QuestionWithAnswers: React.FC<Props> = ({
   expression,
   setResult,

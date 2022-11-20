@@ -18,6 +18,7 @@ import { About49 } from "./AboutConcept/49";
 import { About43 } from "./AboutConcept/43";
 import { About39 } from "./AboutConcept/39";
 import { About39a } from "./AboutConcept/39a";
+import { About4 } from "./AboutConcept/4";
 
 // モーダルの遷移を考慮し、スタック型とする
 type ModalRouteState = {
@@ -40,6 +41,8 @@ export const ModalRouting = () => {
   const router = (route: ModalRouteState) => {
     const conceptId = route.conceptIds[route.conceptIds.length - 1];
     switch (conceptId) {
+      case "4":
+        return <About4 />
       case "39":
         return <About39 />
       case "39a":

@@ -7,7 +7,8 @@
     "upgrade": "npm install typescript@latest react@latest react-dom@latest @types/react@latest @types/react-dom@latest webpack@latest webpack-dev-server@latest webpack-cli@latest ts-loader@latest clean-webpack-plugin@latest html-webpack-plugin@latest --save-exact",
     "build": "webpack --mode=production",
     "_start": "webpack-dev-server -d --content-base ./public",
-    "start": "npx webpack serve --mode=development"
+    "start": "npx webpack serve --mode=development",
+    "test": "jest"
   },
   "dependencies": {
     "@cortex-js/compute-engine": "^0.6.0",
@@ -34,5 +35,8 @@
     "webpack-dev-server": "^4.9.3"
   },
   "devDependencies": {
+    "@types/jest": "^29.2.3",
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.3"
   }
 }

@@ -1,28 +1,22 @@
 import React, { useState } from "react";
-import { BoxedExpression } from "@cortex-js/compute-engine";
 import { MathReadonly } from "../MathLive/MathReadonly";
-import { MathInput } from "../MathLive/MathInput";
-import { ce, NewCE } from "../ComputeEngine";
+import { ce, Evaluator, isEqual } from "../ComputeEngine";
 import { Grid } from "@mui/material";
 import { Check, WarningAmber, Info } from "@mui/icons-material";
 import { QuestionType } from "./common";
-import IconButton from '@mui/material/IconButton';
-import { useRecoilState } from "recoil";
-import { modalState } from "../ModalRouting";
 import { MathInputInline } from "../MathLive/MathInputInline";
-import { MathInline } from "../MathLive/MathInline";
 
 
 type Props = QuestionType & {
-  
+  evaluator?: Evaluator
 };
 
-// 数と式 問題フォーム
 export const Practice: React.FC<Props> = ({
   expression,
   answers,
   answerPlaceholder,
-  conceptId
+  conceptId,
+  evaluator
 }) => {
   const [results, setResults] = useState(answers.map(() => false));
   const [userAnswers, setUserAnswers] = useState(answers.map(() => ""));
@@ -36,7 +30,13 @@ export const Practice: React.FC<Props> = ({
       const expect = ce.parse(answers[i]);
       results[i] = userAnswers.some((ans) => {
         const actual = ce.parse(ans);
-        return expect.isEqual(actual);
+        
+        // 評価式が与えられている場合はそちらを用いる
+        if (!!evaluator) {
+          return evaluator(expect, actual);
+        } else {
+          return isEqual(expect, actual);
+        }
       })
     }
     console.log("results", results);
@@ -46,13 +46,13 @@ export const Practice: React.FC<Props> = ({
 
   return (
     <Grid container spacing={2} sx={{ alignItems: "center" }}>
-      <Grid item xs={4} >
+      <Grid item xs={5} >
         <MathReadonly formula={expression} />
       </Grid>
       {answers.map((_, i) => (
         <Grid item xs key={i} sx={{ textAlign: 'center' }}>
           <MathInputInline onChange={setUserAnswer(i)} />
-          { (answers.length -1 ) === i ? null : ", "}
+          {/* { (answers.length -1 ) === i ? null : ", "} */}
         </Grid>
       ))}
       <Grid item xs={1}>

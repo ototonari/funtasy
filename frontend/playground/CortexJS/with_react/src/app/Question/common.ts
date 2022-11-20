@@ -7,6 +7,7 @@ export type CommonProps = {
 
 export type QuestionType = {
   conceptId: string;
+  level: number;
   expression: string;
   answers: string[];
   answerPlaceholder?: string;

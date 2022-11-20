@@ -8,17 +8,17 @@ import {
   CardContent,
   List,
   Paper,
-  Divider
 } from "@mui/material";
 import { Base } from "./Base";
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
-import { CardBox, ScrollBoxOnModal, Text, TextBr, Title } from "./utils";
+import { CardBox, Border, ScrollBoxOnModal, Text, TextBr, Title } from "./utils";
 import { MathInline } from "../MathLive/MathInline";
 import { About39aDescription } from "./39a";
 import { border } from "@mui/system";
 import { Practice } from "../Question/Practice";
 import { step1 } from "../database/questions/39";
+import { About4Description } from "./4";
 
 const ab = (texts: string[] | React.ReactNode[]) =>
   texts.map((t) => (
@@ -72,7 +72,7 @@ export const About39: React.FC = () => {
           <Grid item xs={4}>
             <ScrollBoxOnModal >
             <Title>
-              例題①
+              例題: 
             </Title>
             <Text>
             {ab([
@@ -88,14 +88,11 @@ export const About39: React.FC = () => {
                 <><MathInline formula="x=\frac{-\left(-7\right)\pm\sqrt{\left(-7\right)^2-4\times3\times1}}{2\times3}=\frac{7\pm\sqrt{37}}{6}" /> となる。</>,
               ])}
             </Text>
-            <div style={{ marginTop: 10, marginBottom: 10}} >
-              <Divider />
-            </div>
+            <Border />
             <Title>練習</Title>
             { step1.map((s, i) => (<Practice {...s} key={i} />))}
-            <div style={{ marginTop: 10, marginBottom: 10}} >
-              <Divider />
-            </div>
+            
+            <Border />
             <Title>
               例題②
             </Title>
@@ -118,7 +115,7 @@ export const About39: React.FC = () => {
           <Grid item xs>
           <ScrollBoxOnModal isNoOutline={true}>
             <CardBox >
-              <About39aDescription />
+              <About4Description />
             </CardBox>
             <CardBox >
               <About39aDescription />
