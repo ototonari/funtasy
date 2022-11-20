@@ -116,9 +116,14 @@ export const About39: React.FC = () => {
             </ScrollBoxOnModal>
           </Grid>
           <Grid item xs>
-            <CardBox>
+          <ScrollBoxOnModal isNoOutline={true}>
+            <CardBox >
               <About39aDescription />
             </CardBox>
+            <CardBox >
+              <About39aDescription />
+            </CardBox>
+          </ScrollBoxOnModal>
           </Grid>
         </Grid>
       </Box>
