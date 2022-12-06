@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { GuideStatus } from "./database/concepts/LocalStorage";
+import { GuideStorage } from "./database/concepts/LocalStorage";
 import { presets } from "./database/questions";
 import { Check } from "./Scenario/Check";
 import { Guide } from "./Scenario/Guide";
@@ -15,7 +15,7 @@ export const routeState = atom<RouteState>({
 export const Routing = () => {
   const [route, setRoute] = useRecoilState(routeState);
   useEffect(() => {
-    const hasGuide = GuideStatus.get();
+    const hasGuide = GuideStorage.get();
     if (hasGuide) {
       setRoute("check");
     }

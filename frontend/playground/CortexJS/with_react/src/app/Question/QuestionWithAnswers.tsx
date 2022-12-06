@@ -9,6 +9,7 @@ import { QuestionType } from "./common";
 import IconButton from '@mui/material/IconButton';
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
+import { instructionalCurriculumMapState } from "../PersonalLearningStatus";
 
 
 type Props = QuestionType & {

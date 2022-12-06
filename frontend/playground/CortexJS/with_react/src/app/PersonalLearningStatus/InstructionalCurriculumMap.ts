@@ -1,3 +1,6 @@
+import { ICMStorage } from "../database/concepts/LocalStorage";
+import { MapConverter } from "../utils/MapConverter";
+import { SetConverter } from "../utils/SetConverter";
 
 type Level = number;
 
@@ -17,14 +20,75 @@ enum FactorizationLevels {
   "応用",
 }
 
+export const ICMRepository = {
+  save: (icm: InstructionalCurriculumMap) => {
+    const rawStatus = icm.toJson();
+    
+    if (rawStatus !== "") {
+      ICMStorage.set(rawStatus);
+    }
+  },
+  load: () => {
+    const rawStatus = ICMStorage.get();
+
+    let icm: InstructionalCurriculumMap;
+    if (rawStatus !== null) {
+      icm = InstructionalCurriculumMap.FromJson(rawStatus);
+    } else {
+      icm = InstructionalCurriculumMap.FirstUse();
+    }
+
+    return icm;
+  }
+}
+
 type InstructionalCurriculumMapData = [string, Level, string[]];
+type Status = Map<ConceptId, Set<Level>>;
 export class InstructionalCurriculumMap {
-  status: Map<ConceptId, Set<Level>>;
+  status: Status;
   data: InstructionalCurriculumMapData[]
 
-  constructor() {
+  private constructor(status: Status) {
     this.data = data;
-    this.status = new Map();
+    this.status = status;
+  }
+
+  /**
+   * 初回利用時のファクトリーメソッド
+   * @returns InstructionalCurriculumMap
+   */
+  static FirstUse = () => {
+    return new InstructionalCurriculumMap(new Map());
+  }
+
+  /**
+   * 前回の状態を引き継ぐファクトリーメソッド
+   * @param status 
+   * @returns InstructionalCurriculumMap
+   */
+  static FromJson = (rawStatus: string) => {
+    // String を Map -> String に変換してから Map -> Set に変換する
+    const status = new Map<ConceptId, Set<Level>>();
+
+    // Map -> String
+    const tmpMap = MapConverter.parse(rawStatus);
+
+    // Map -> Set
+    tmpMap.forEach((strSet, conceptId) => status.set(conceptId, SetConverter.parse(strSet)));
+
+    return new InstructionalCurriculumMap(status);
+  }
+
+  toJson = () => {
+    // Map -> Set の構造体なので先に Map -> String に変換してから String に置き換える
+    const tmpMap = new Map<ConceptId, String>();
+
+    // Map -> String
+    this.status.forEach((innerSet, conceptId) => tmpMap.set(conceptId, SetConverter.stringify(innerSet)));
+
+    // String
+    const str = MapConverter.stringify(tmpMap);
+    return str;
   }
 
   hasConcept = (id: ConceptId): boolean => this.data.filter(([conceptId,]) => conceptId === id).length > 0;
@@ -53,7 +117,7 @@ export class InstructionalCurriculumMap {
   }
 
   // 正解した問題を記憶する
-  registerStatus = (id: ConceptId, level: Level): void => {
+  registerStatus = (id: ConceptId, level: Level): InstructionalCurriculumMap => {
     this.setStatus(id, level);
 
     const conceptLevels = this.getAllPrerequisiteConceptsByIdLevel(id, level);
@@ -61,6 +125,8 @@ export class InstructionalCurriculumMap {
       const [id, level] = conceptLevel.split("-");
       this.setStatus(id, Number(level));
     })
+
+    return new InstructionalCurriculumMap(this.status);
   }
 
   // コンセプトの前提条件が存在するか

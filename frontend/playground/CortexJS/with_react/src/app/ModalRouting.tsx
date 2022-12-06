@@ -1,10 +1,6 @@
 import React, { useEffect } from "react";
-import { Alert, Box, Button, Paper, Modal } from "@mui/material";
+import { Modal } from "@mui/material";
 
-import { GuideStatus } from "./database/concepts/LocalStorage";
-import { presets } from "./database/questions";
-import { Check } from "./Scenario/Check";
-import { Guide } from "./Scenario/Guide";
 import {
   atom,
   selector,
@@ -12,7 +8,6 @@ import {
   useRecoilState,
   useRecoilValue,
 } from "recoil";
-import Typography from "@mui/material/Typography";
 import { ComingSoon } from "./AboutConcept/ComingSoon";
 import { About49 } from "./AboutConcept/49";
 import { About43 } from "./AboutConcept/43";
@@ -28,7 +23,7 @@ type ModalRouteState = {
 export const modalState = atom<ModalRouteState>({
   key: "ModalRouteState",
   default: {
-    conceptIds: ["39"],
+    conceptIds: [],
   },
 });
 

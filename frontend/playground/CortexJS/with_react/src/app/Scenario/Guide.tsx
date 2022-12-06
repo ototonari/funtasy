@@ -1,7 +1,7 @@
 import { Box, Button, Paper } from "@mui/material";
 import React from "react";
 import { useRecoilState } from "recoil";
-import { GuideStatus } from "../database/concepts/LocalStorage";
+import { GuideStorage } from "../database/concepts/LocalStorage";
 import { routeState } from "../Routing";
 
 type Props = {};

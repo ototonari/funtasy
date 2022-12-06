@@ -20,7 +20,6 @@ export const MathWithLatex: React.FC = () => {
     setFormula2(str);
   };
   // const box = ce.parse(formula);
-  console.log("hoge", formula2)
   useEffect(() => {
     elm.addEventListener("input", handleInput);
     ref1.current.appendChild(elm);
