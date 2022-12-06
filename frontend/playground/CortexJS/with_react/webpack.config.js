@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/app/index.tsx',
   devtool: 'inline-source-map',
   watchOptions: {
-    aggregateTimeout: 200,
+    aggregateTimeout: 1000,
     poll: 1000,
   },
   plugins: [

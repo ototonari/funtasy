@@ -8,6 +8,13 @@ export const createMfeElement = (formula: string): MathfieldElement => {
   return mfe;
 };
 
+export const createMfeWithoutKeyboardElement = (formula: string): MathfieldElement => {
+  const mfe = new MathfieldElement();  
+  mfe.setAttribute("style", innerStyle);
+  mfe.innerText = formula;
+  return mfe;
+};
+
 const innerStyle = `
 style="
 vertical-align: middle;
@@ -28,4 +35,16 @@ export const createReadonlyMfeElement = (formula: string): MathfieldElement => {
 
 const readOnlyStyle = `
 display:inline-block;
+`
+
+export const createReadonlyInlineMfeElement = (formula: string): MathfieldElement => {
+  const mfe = new MathfieldElement();
+  mfe.setAttribute("read-only", "");
+  mfe.setAttribute("style", inlineStyle);
+  mfe.innerText = formula;
+  return mfe;
+};
+
+const inlineStyle = `
+display:inline;
 `

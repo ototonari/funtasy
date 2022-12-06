@@ -20,8 +20,8 @@ export const Teach: React.FC<TeachProps> = (props: TeachProps) => {
   return (
     <div>
       <h3>{concept}</h3>
-      {articles.map((article) => (
-        <div>
+      {articles.map((article, index) => (
+        <div key={index}>
           <h4 style={{ marginLeft: 20 }}>{article.title}</h4>
           <div>
             <p>{article.description}</p>
