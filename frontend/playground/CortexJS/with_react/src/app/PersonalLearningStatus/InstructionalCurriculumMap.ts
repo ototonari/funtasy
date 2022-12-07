@@ -10,6 +10,8 @@ type ConceptId = string;
 
 type ConceptLevels = [LevelLabel, Level][];
 
+type ConceptLevel = [ConceptId, Level];
+
 // あくまでフロントの解釈用
 enum FactorizationLevels {
   "共通因数による因数分解" = 1,
@@ -20,10 +22,30 @@ enum FactorizationLevels {
   "応用",
 }
 
+export enum Concept {
+  "数と式" = "1",
+  "整式の加減" = "2",
+  "式の展開"　= "3",
+  "因数分解" = "4",
+  "2次方程式の解とその判別"　= "39",
+  "2次不等式" = "43",
+  "解の公式" = "101"
+}
+
+const data: InstructionalCurriculumMapData[] = [
+  [Concept.数と式, 0, []],
+  [Concept.整式の加減, 0, []],
+  [Concept.式の展開, 0, ["1-0", "2-0"]],
+  [Concept.因数分解, 0, ["3-0"]],
+  [Concept["2次方程式の解とその判別"], 1, ["4-0"]],
+  [Concept["2次方程式の解とその判別"], 2, ["4-0", "101-0"]],
+  [Concept.解の公式, 0, []],
+]
+
 export const ICMRepository = {
   save: (icm: InstructionalCurriculumMap) => {
     const rawStatus = icm.toJson();
-    
+
     if (rawStatus !== "") {
       ICMStorage.set(rawStatus);
     }
@@ -225,13 +247,3 @@ export class InstructionalCurriculumMap {
     })
   }
 }
-
-const data: InstructionalCurriculumMapData[] = [
-  ["1", 0, []],
-  ["2", 0, []],
-  ["3", 0, ["1-0", "2-0"]],
-  ["4", 0, ["3-0"]],
-  ["39", 1, ["4-0"]],
-  ["39", 2, ["4-0", "101-0"]],
-  ["101", 0, []],
-]

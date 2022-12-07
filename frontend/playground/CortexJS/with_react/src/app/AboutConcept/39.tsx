@@ -14,7 +14,7 @@ import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
 import { CardBox, Border, ScrollBoxOnModal, Text, TextBr, Title } from "./utils";
 import { MathInline } from "../MathLive/MathInline";
-import { About39aDescription } from "./39a";
+import { About39aDescription } from "./101";
 import { border } from "@mui/system";
 import { Practice } from "../Question/Practice";
 import { step1 } from "../database/questions/39";

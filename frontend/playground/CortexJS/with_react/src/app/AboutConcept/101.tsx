@@ -13,9 +13,9 @@ import { Text, TextBr, ab } from "./utils";
 import { MathInline } from "../MathLive/MathInline";
 import { useGotoConcept } from "../hooks/useGotoConcept";
 
-const ConceptId = "39a";
+const ConceptId = "101";
 
-export const About39a: React.FC = () => {
+export const About101: React.FC = () => {
   const [modalRoute, setModalRoute] = useRecoilState(modalState);
 
   const goToNext = () => {
