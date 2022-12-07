@@ -20,22 +20,22 @@ import { Concept, InstructionalCurriculumMap } from "../PersonalLearningStatus/I
 
 // 溶けなかった問題のプロパティ
 type Props = {
-  conceptId: string,
+  conceptId: number,
   level: number,
 }
 
 const unresolveConcepts = (icm: InstructionalCurriculumMap, {conceptId, level}: Props) => {
   const unresolvedConceptLevels = icm.getPrerequisiteConceptByIdLevelAndStatus(conceptId, level);
-  const conceptIds = new Set<string>();
+  const conceptIds = new Set<number>();
   unresolvedConceptLevels.forEach((conceptLevel) => {
-    const [id, level] = conceptLevel.split("-");
+    const [id, level] = conceptLevel;
     conceptIds.add(id);
   })
   const concepts = Array.from(conceptIds.values()).map(conceptMatcher);
 
 }
 
-export const conceptMatcher = (conceptId: string) => {
+export const conceptMatcher = (conceptId: number) => {
   switch (conceptId) {
     case Concept.因数分解:
       return <About4 />

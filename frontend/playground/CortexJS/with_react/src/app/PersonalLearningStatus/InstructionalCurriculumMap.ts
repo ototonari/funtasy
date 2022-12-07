@@ -6,11 +6,13 @@ type Level = number;
 
 type LevelLabel = string;
 
-type ConceptId = string;
+type ConceptId = number;
 
 type ConceptLevels = [LevelLabel, Level][];
 
 type ConceptLevel = [ConceptId, Level];
+
+type Prerequisites = [ConceptId, Level];
 
 // あくまでフロントの解釈用
 enum FactorizationLevels {
@@ -23,22 +25,22 @@ enum FactorizationLevels {
 }
 
 export enum Concept {
-  "数と式" = "1",
-  "整式の加減" = "2",
-  "式の展開"　= "3",
-  "因数分解" = "4",
-  "2次方程式の解とその判別"　= "39",
-  "2次不等式" = "43",
-  "解の公式" = "101"
+  "数と式" = 1,
+  "整式の加減" = 2,
+  "式の展開"　= 3,
+  "因数分解" = 4,
+  "2次方程式の解とその判別"　= 39,
+  "2次不等式" = 43,
+  "解の公式" = 101
 }
 
 const data: InstructionalCurriculumMapData[] = [
   [Concept.数と式, 0, []],
   [Concept.整式の加減, 0, []],
-  [Concept.式の展開, 0, ["1-0", "2-0"]],
-  [Concept.因数分解, 0, ["3-0"]],
-  [Concept["2次方程式の解とその判別"], 1, ["4-0"]],
-  [Concept["2次方程式の解とその判別"], 2, ["4-0", "101-0"]],
+  [Concept.式の展開, 0, [[1, 0], [2, 0]]],
+  [Concept.因数分解, 0, [[3, 0]]],
+  [Concept["2次方程式の解とその判別"], 1, [[4, 0]]],
+  [Concept["2次方程式の解とその判別"], 2, [[4, 0], [101, 0]]],
   [Concept.解の公式, 0, []],
 ]
 
@@ -64,7 +66,7 @@ export const ICMRepository = {
   }
 }
 
-type InstructionalCurriculumMapData = [string, Level, string[]];
+type InstructionalCurriculumMapData = [ConceptId, Level, Prerequisites[]];
 type Status = Map<ConceptId, Set<Level>>;
 export class InstructionalCurriculumMap {
   status: Status;
@@ -96,17 +98,17 @@ export class InstructionalCurriculumMap {
     const tmpMap = MapConverter.parse(rawStatus);
 
     // Map -> Set
-    tmpMap.forEach((strSet, conceptId) => status.set(conceptId, SetConverter.parse(strSet)));
+    tmpMap.forEach((strSet, conceptId) => status.set(Number(conceptId), SetConverter.parse(strSet)));
 
     return new InstructionalCurriculumMap(status);
   }
 
   toJson = () => {
     // Map -> Set の構造体なので先に Map -> String に変換してから String に置き換える
-    const tmpMap = new Map<ConceptId, String>();
+    const tmpMap = new Map<string, string>();
 
     // Map -> String
-    this.status.forEach((innerSet, conceptId) => tmpMap.set(conceptId, SetConverter.stringify(innerSet)));
+    this.status.forEach((innerSet, conceptId) => tmpMap.set(`${conceptId}`, SetConverter.stringify(innerSet)));
 
     // String
     const str = MapConverter.stringify(tmpMap);
@@ -144,7 +146,7 @@ export class InstructionalCurriculumMap {
 
     const conceptLevels = this.getAllPrerequisiteConceptsByIdLevel(id, level);
     conceptLevels.forEach((conceptLevel) => {
-      const [id, level] = conceptLevel.split("-");
+      const [id, level] = conceptLevel;
       this.setStatus(id, Number(level));
     })
 
@@ -160,7 +162,7 @@ export class InstructionalCurriculumMap {
   }
 
   // コンセプトの前提条件を取得する
-  getPrerequisiteConceptsById = (id: ConceptId): string[] => {
+  getPrerequisitesById = (id: ConceptId): Prerequisites[] => {
     if (!this.hasPrerequisiteConcepts(id)) return [];
 
     const [, , prerequisiteConcept] = this.getConcept(id);
@@ -169,16 +171,16 @@ export class InstructionalCurriculumMap {
 
   // コンセプトとレベルから全ての前提条件を取得する
   getAllPrerequisiteConceptsByIdLevel = (id: ConceptId, level: Level) => {
-    const prerequisites: string[] = [];
+    const prerequisites: Prerequisites[] = [];
 
-    const getPrerequisiteConceptsByIdRecv = (id: ConceptId, level: Level, prerequisites: string[]) => {
+    const getPrerequisiteConceptsByIdRecv = (id: ConceptId, level: Level, prerequisites: Prerequisites[]) => {
       if (!this.hasPrerequisiteConcepts(id)) return;
 
-      const conceptLevels = this.getPrerequisiteConceptByIdLevel(id, level);
+      const conceptLevels = this.getPrerequisitesByIdLevel(id, level);
       // 取得した前提条件を付与しつつ再帰処理を行う
       conceptLevels.forEach((conceptLevel) => {
         prerequisites.push(conceptLevel);
-        const [id, level] = conceptLevel.split("-");
+        const [id, level] = conceptLevel;
         getPrerequisiteConceptsByIdRecv(id, Number(level), prerequisites);
       })
     }
@@ -189,20 +191,20 @@ export class InstructionalCurriculumMap {
   }
 
   // コンセプトとレベルから必要な前提条件を取得する
-  getPrerequisiteConceptByIdLevelAndStatus = (id: string, level: number): string[] => {
-    const conceptLevels = this.getPrerequisiteConceptByIdLevel(id, level);
+  getPrerequisiteConceptByIdLevelAndStatus = (id: ConceptId, level: Level): Prerequisites[] => {
+    const conceptLevels = this.getPrerequisitesByIdLevel(id, level);
     
     return this.filterConceptByStatus(conceptLevels);
   }
 
   // コンセプトとレベルから必要な前提条件を取得する
-  getPrerequisiteConceptByIdLevel = (id: string, level: number): string[] => {
+  getPrerequisitesByIdLevel = (id: ConceptId, level: Level): Prerequisites[] => {
     if (!this.hasConcept(id)) {
 
     }
     const concepts = this.data.filter(([conceptId,]) => conceptId === id)
     
-    const prerequisiteConcept = new Set<string>()
+    const prerequisiteConcept = new Set<Prerequisites>()
     if (this.hasSpecificConceptLevel(id, level)) {
       
       concepts
@@ -222,16 +224,16 @@ export class InstructionalCurriculumMap {
   }
 
   // コンセプトとレベルのうち、既に解凍済みのものを除いたものを返す
-  private filterConceptByStatus = (conceptLevels: string[]): string[] => {
+  private filterConceptByStatus = (conceptLevels: Prerequisites[]): Prerequisites[] => {
     return conceptLevels.filter((conceptLevel) => {
-      const [id, level] = conceptLevel.split("-");
+      const [id, level] = conceptLevel;
       // そのコンセプトで登録がない場合はスルー
       if (!this.status.has(id)) {
         return true;
       }
 
       // 登録があり、コンセプトの前提条件が0を示している場合はOK
-      if (level === "0") {
+      if (level === 0) {
         return false;
       } else {
         let lv: number

@@ -7,11 +7,6 @@ import { modalState } from "../ModalRouting";
 export const About43: React.FC = () => {
   const [modalRoute, setModalRoute] = useRecoilState(modalState);
 
-  const goToNext = () => {
-    const conceptIds = [...modalRoute.conceptIds, "49"];
-    setModalRoute({ conceptIds });
-  };
-
   return (
     <Base>
       <Box sx={{ flexGrow: 1 }}>

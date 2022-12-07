@@ -19,7 +19,7 @@ import { conceptMatcher } from "./ConceptMatcher";
 
 // モーダルの遷移を考慮し、スタック型とする
 type ModalRouteState = {
-  conceptIds: string[];
+  conceptIds: number[];
 };
 
 export const modalState = atom<ModalRouteState>({

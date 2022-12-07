@@ -1,6 +1,6 @@
 import { QuestionType } from "../../Question/common";
 
-const ConceptId = "39"
+const ConceptId = 39
 
 enum Levels {
   "因数分解",

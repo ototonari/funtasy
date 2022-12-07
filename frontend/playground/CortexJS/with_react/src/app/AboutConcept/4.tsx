@@ -14,14 +14,15 @@ import { useGotoConcept } from "../hooks/useGotoConcept";
 import { p4 } from "../database/questions/4";
 import { Practice } from "../Question/Practice";
 import { evaluationBySubs } from "../ComputeEngine";
+import { Concept } from "../PersonalLearningStatus/InstructionalCurriculumMap";
 
-const ConceptId = "4";
+const ConceptId = 4
 
 export const About4: React.FC = () => {
   const [modalRoute, setModalRoute] = useRecoilState(modalState);
 
   const goToNext = () => {
-    const conceptIds = [...modalRoute.conceptIds, "49"];
+    const conceptIds = [...modalRoute.conceptIds, Concept["2次不等式"]];
     setModalRoute({ conceptIds });
   };
 

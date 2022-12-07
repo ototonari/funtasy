@@ -8,7 +8,8 @@
     "build": "webpack --mode=production",
     "_start": "webpack-dev-server -d --content-base ./public",
     "start": "npx webpack serve --mode=development",
-    "test": "jest"
+    "test": "jest",
+    "typecheck": "npx tsc --noEmit -p ."
   },
   "dependencies": {
     "@cortex-js/compute-engine": "^0.6.0",
