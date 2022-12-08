@@ -2,11 +2,11 @@ import React from "react";
 import { Typography, Card, CardContent, Paper, Box, Divider } from "@mui/material";
 
 export const ab = (texts: string[] | React.ReactNode[]) =>
-  texts.map((t) => (
-    <>
+  texts.map((t, i) => (
+    <div key={i}>
       {t}
       <br />
-    </>
+    </div>
   ));
 
 type Props = {

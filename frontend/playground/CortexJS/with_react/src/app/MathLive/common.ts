@@ -1,7 +1,9 @@
 import { MathfieldElement } from "mathlive";
 
 export const createMfeElement = (formula: string): MathfieldElement => {
-  const mfe = new MathfieldElement();  
+  const mfe = new MathfieldElement();
+  mfe.keypressSound = null;
+  mfe.plonkSound = null;
   mfe.setAttribute("virtual-keyboard-mode", "manual");
   mfe.setAttribute("style", innerStyle);
   mfe.innerText = formula;
@@ -9,7 +11,9 @@ export const createMfeElement = (formula: string): MathfieldElement => {
 };
 
 export const createMfeWithoutKeyboardElement = (formula: string): MathfieldElement => {
-  const mfe = new MathfieldElement();  
+  const mfe = new MathfieldElement();
+  mfe.keypressSound = null;
+  mfe.plonkSound = null;
   mfe.setAttribute("style", innerStyle);
   mfe.innerText = formula;
   return mfe;
@@ -27,6 +31,8 @@ max-width: 300px;
 
 export const createReadonlyMfeElement = (formula: string): MathfieldElement => {
   const mfe = new MathfieldElement();
+  mfe.keypressSound = null;
+  mfe.plonkSound = null;
   mfe.setAttribute("read-only", "");
   mfe.setAttribute("style", readOnlyStyle);
   mfe.innerText = formula;
@@ -39,6 +45,8 @@ display:inline-block;
 
 export const createReadonlyInlineMfeElement = (formula: string): MathfieldElement => {
   const mfe = new MathfieldElement();
+  mfe.keypressSound = null;
+  mfe.plonkSound = null;
   mfe.setAttribute("read-only", "");
   mfe.setAttribute("style", inlineStyle);
   mfe.innerText = formula;

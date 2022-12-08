@@ -4,7 +4,6 @@ import { QuestionWithAnswers } from "../Question/QuestionWithAnswers";
 import { QuestionType } from "../Question/common";
 import { useRecoilState } from "recoil";
 import { icmState } from "../PersonalLearningStatus";
-import { ICMRepository } from "../PersonalLearningStatus/InstructionalCurriculumMap";
 
 type Props = {
   questions: QuestionType[];

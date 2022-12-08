@@ -31,11 +31,11 @@ export const MathWithLatex: React.FC = () => {
   return (
     <div>
       <Grid container >
-        <Grid xs={2} >
+        <Grid item xs={2} >
           <label>Mathfield</label>
           <div ref={ref1} />
         </Grid>
-        <Grid xs={4} >
+        <Grid item xs={4} >
           <label>Latex</label>
           <br />
           <textarea
@@ -48,7 +48,7 @@ export const MathWithLatex: React.FC = () => {
             spellCheck={false}
           />
         </Grid>
-        <Grid xs ></Grid>
+        <Grid item xs></Grid>
       </Grid>
 
         {/* <div>

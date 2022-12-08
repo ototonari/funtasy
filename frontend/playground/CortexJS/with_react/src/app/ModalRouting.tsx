@@ -9,12 +9,6 @@ import {
   useRecoilValue,
 } from "recoil";
 import { ComingSoon } from "./AboutConcept/ComingSoon";
-import { About49 } from "./AboutConcept/49";
-import { About43 } from "./AboutConcept/43";
-import { About39 } from "./AboutConcept/39";
-import { About101 } from "./AboutConcept/101";
-import { About4 } from "./AboutConcept/4";
-import { Concept } from "./PersonalLearningStatus/InstructionalCurriculumMap";
 import { conceptMatcher } from "./ConceptMatcher/conceptMatcher";
 
 // モーダルの遷移を考慮し、スタック型とする
@@ -53,7 +47,9 @@ export const ModalRouting = () => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        {router(modalRoute)}
+        <div>
+          {router(modalRoute)}
+        </div>
       </Modal>
   );
 };
