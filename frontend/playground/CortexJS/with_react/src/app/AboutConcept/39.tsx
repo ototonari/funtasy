@@ -10,15 +10,17 @@ import {
   Paper,
 } from "@mui/material";
 import { Base } from "./Base";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState } from "../ModalRouting";
 import { CardBox, Border, ScrollBoxOnModal, Text, TextBr, Title } from "./utils";
 import { MathInline } from "../MathLive/MathInline";
-import { About39aDescription } from "./39a";
+import { About101Description } from "./101";
 import { border } from "@mui/system";
 import { Practice } from "../Question/Practice";
 import { step1 } from "../database/questions/39";
 import { About4Description } from "./4";
+import { unresolveConcepts } from "../ConceptMatcher";
+import { icmState } from "../PersonalLearningStatus";
 
 const ab = (texts: string[] | React.ReactNode[]) =>
   texts.map((t) => (
@@ -29,12 +31,9 @@ const ab = (texts: string[] | React.ReactNode[]) =>
   ));
 
 export const About39: React.FC = () => {
-  const [modalRoute, setModalRoute] = useRecoilState(modalState);
+  const {icm} = useRecoilValue(icmState)
 
-  const goToNext = () => {
-    const conceptIds = [...modalRoute.conceptIds, "49"];
-    setModalRoute({ conceptIds });
-  };
+  const [{currentConceptLevel}, setModalRoute] = useRecoilState(modalState);
 
   return (
     <Base>
@@ -114,12 +113,13 @@ export const About39: React.FC = () => {
           </Grid>
           <Grid item xs>
           <ScrollBoxOnModal isNoOutline={true}>
-            <CardBox >
+          {currentConceptLevel ? unresolveConcepts(icm, { conceptId: currentConceptLevel[0], level: currentConceptLevel[1]}) : null}
+            {/* <CardBox >
               <About4Description />
             </CardBox>
             <CardBox >
               <About39aDescription />
-            </CardBox>
+            </CardBox> */}
           </ScrollBoxOnModal>
           </Grid>
         </Grid>

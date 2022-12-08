@@ -9,7 +9,7 @@ import { QuestionType } from "./common";
 import IconButton from '@mui/material/IconButton';
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
-import { instructionalCurriculumMapState } from "../PersonalLearningStatus";
+import { icmState } from "../PersonalLearningStatus";
 
 
 type Props = QuestionType & {
@@ -24,12 +24,17 @@ export const QuestionWithAnswers: React.FC<Props> = ({
   feedback,
   answers,
   answerPlaceholder,
-  conceptId
+  conceptId,
+  level
 }) => {
   const [modalRoute, setModalRoute] = useRecoilState(modalState);
   const aboutConcept = () => {
     const conceptIds = [...modalRoute.conceptIds, conceptId]
-    setModalRoute({conceptIds})
+    console.log(conceptId, level);
+    setModalRoute({
+      conceptIds,
+      currentConceptLevel: [conceptId, level]
+    })
   }
   const [results, setResults] = useState(answers.map(() => false));
   const [userAnswers, setUserAnswers] = useState(answers.map(() => ""));

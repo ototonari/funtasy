@@ -13,7 +13,7 @@ export const About49: React.FC = () => {
   }
 
   const goToNext = () => {
-    const conceptIds = [...modalRoute.conceptIds, "49"]
+    const conceptIds = [...modalRoute.conceptIds, 49]
     setModalRoute({conceptIds})
   }
 

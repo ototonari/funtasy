@@ -13,13 +13,13 @@ import { Text, TextBr, ab } from "./utils";
 import { MathInline } from "../MathLive/MathInline";
 import { useGotoConcept } from "../hooks/useGotoConcept";
 
-const ConceptId = "39a";
+const ConceptId = 101;
 
-export const About39a: React.FC = () => {
+export const About101: React.FC = () => {
   const [modalRoute, setModalRoute] = useRecoilState(modalState);
 
   const goToNext = () => {
-    const conceptIds = [...modalRoute.conceptIds, "49"];
+    const conceptIds = [...modalRoute.conceptIds, 49];
     setModalRoute({ conceptIds });
   };
 
@@ -28,7 +28,7 @@ export const About39a: React.FC = () => {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <About39aDescription />
+            <About101Description />
           </Grid>
 
           <Grid item xs={4}></Grid>
@@ -41,7 +41,7 @@ export const About39a: React.FC = () => {
   );
 };
 
-export const About39aDescription = () => {
+export const About101Description = () => {
   const [, goToNext, isSameConcept] = useGotoConcept();
 
   const isSame = isSameConcept(ConceptId)

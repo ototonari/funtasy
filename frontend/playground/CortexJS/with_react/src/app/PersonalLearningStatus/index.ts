@@ -3,10 +3,10 @@ import { InstructionalCurriculumMap } from "./InstructionalCurriculumMap";
 
 // モーダルの遷移を考慮し、スタック型とする
 type Props = {
-  icm: InstructionalCurriculumMap
+  icm: InstructionalCurriculumMap,
 };
 
-export const instructionalCurriculumMapState = atom<Props>({
+export const icmState = atom<Props>({
   key: "InstructionalCurriculumMap",
   default: {
     icm: null

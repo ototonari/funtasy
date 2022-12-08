@@ -12,6 +12,9 @@ export const Debug = {
     ${KEY.ICM}: ${localStorage.getItem(KEY.ICM)}
     `)
   },
+  resetICM: () => {
+    localStorage.setItem(KEY.ICM, null);
+  }
 };
 
 export const GuideStorage = {

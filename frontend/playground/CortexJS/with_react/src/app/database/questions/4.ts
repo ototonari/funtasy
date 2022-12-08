@@ -1,10 +1,10 @@
 import { QuestionType } from "../../Question/common";
 
 // 因数分解
-const ConceptId = "4";
+const ConceptId = 4;
 
 enum Levels {
-  "共通因数による因数分解",
+  "共通因数による因数分解" = 1,
   "公式1",
   "公式2",
   "公式3",
