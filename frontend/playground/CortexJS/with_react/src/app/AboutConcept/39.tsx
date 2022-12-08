@@ -12,7 +12,7 @@ import {
 import { Base } from "./Base";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { modalState } from "../ModalRouting";
-import { CardBox, Border, ScrollBoxOnModal, Text, TextBr, Title } from "./utils";
+import { CardBox, Border, ScrollBoxOnModal, Text, TextBr, Title, ab } from "./utils";
 import { MathInline } from "../MathLive/MathInline";
 import { About101Description } from "./101";
 import { border } from "@mui/system";
@@ -21,14 +21,6 @@ import { step1 } from "../database/questions/39";
 import { About4Description } from "./4";
 import { unresolveConcepts } from "../ConceptMatcher";
 import { icmState } from "../PersonalLearningStatus";
-
-const ab = (texts: string[] | React.ReactNode[]) =>
-  texts.map((t) => (
-    <>
-      {t}
-      <br />
-    </>
-  ));
 
 export const About39: React.FC = () => {
   const {icm} = useRecoilValue(icmState)

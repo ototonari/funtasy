@@ -1,18 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { MathfieldElement} from 'mathlive';
 
-export const Formula = () => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const mfe = createMFE("x=\\frac{-b\\pm \\sqrt{b^2-4ac}}{2a}")
-
-    ref.current.appendChild(mfe);
-  }, []);
-
-  return <div ref={ref} />
-}
-
 function createHtml() {
   return {
     __html: "<p>hogehoge</p>"

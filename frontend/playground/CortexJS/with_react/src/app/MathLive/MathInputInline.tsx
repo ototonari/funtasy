@@ -20,6 +20,8 @@ export const MathInputInline: React.FC<Props> = ({
 
   useEffect(() => {
     const mfe = new MathfieldElement();
+    mfe.keypressSound = null;
+    mfe.plonkSound = null;
     mfe.setAttribute("style", inlineStyle);
     mfe.addEventListener("input", onChangeHandler);
     mfe.value = "";
