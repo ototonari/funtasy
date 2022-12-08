@@ -1,3 +1,8 @@
+import React from "react";
+import { CardBox } from "../AboutConcept/utils";
+import { InstructionalCurriculumMap } from "../PersonalLearningStatus/InstructionalCurriculumMap";
+import { descriptionMatcher } from "./conceptMatcher";
+
 /**
  * ICMやScoreの情報を用いて、コンセプト表示に重みづけを行いたい。
  * 例
@@ -11,41 +16,30 @@
  * 
  */
 
-import React from "react";
-import { About101 } from "../AboutConcept/101";
-import { About39 } from "../AboutConcept/39";
-import { About4 } from "../AboutConcept/4";
-import { About43 } from "../AboutConcept/43";
-import { Concept, InstructionalCurriculumMap } from "../PersonalLearningStatus/InstructionalCurriculumMap";
-
 // 溶けなかった問題のプロパティ
 type Props = {
   conceptId: number,
   level: number,
 }
 
-const unresolveConcepts = (icm: InstructionalCurriculumMap, {conceptId, level}: Props) => {
+export const unresolveConcepts = (icm: InstructionalCurriculumMap, {conceptId, level}: Props) => {
   const unresolvedConceptLevels = icm.getPrerequisiteConceptByIdLevelAndStatus(conceptId, level);
+
+  if (unresolvedConceptLevels.length === 0) return null;
+  
   const conceptIds = new Set<number>();
   unresolvedConceptLevels.forEach((conceptLevel) => {
     const [id, level] = conceptLevel;
     conceptIds.add(id);
   })
-  const concepts = Array.from(conceptIds.values()).map(conceptMatcher);
 
+  console.log("unresolvedConceptLevels", unresolvedConceptLevels)
+  const conceptComponents = Array.from(conceptIds.values()).sort().map((conceptId, i) => (
+    <CardBox key={i} >
+      {descriptionMatcher(conceptId)}
+    </CardBox>
+  ));
+
+  return conceptComponents
 }
 
-export const conceptMatcher = (conceptId: number) => {
-  switch (conceptId) {
-    case Concept.因数分解:
-      return <About4 />
-    case Concept["2次方程式の解とその判別"]:
-      return <About39 />
-    case Concept["2次不等式"]:
-      return <About43 />
-    case Concept.解の公式:
-      return <About101 />  
-  default:
-      return null;
-  }
-}

@@ -54,9 +54,10 @@ export const ICMRepository = {
   },
   load: () => {
     const rawStatus = ICMStorage.get();
+    const tmpStatus = JSON.parse(rawStatus);
 
     let icm: InstructionalCurriculumMap;
-    if (rawStatus !== null) {
+    if (tmpStatus !== null) {
       icm = InstructionalCurriculumMap.FromJson(rawStatus);
     } else {
       icm = InstructionalCurriculumMap.FirstUse();
@@ -193,7 +194,7 @@ export class InstructionalCurriculumMap {
   // コンセプトとレベルから必要な前提条件を取得する
   getPrerequisiteConceptByIdLevelAndStatus = (id: ConceptId, level: Level): Prerequisites[] => {
     const conceptLevels = this.getPrerequisitesByIdLevel(id, level);
-    
+    console.log("conceptLevels", conceptLevels)
     return this.filterConceptByStatus(conceptLevels);
   }
 

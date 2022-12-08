@@ -28,6 +28,14 @@ describe("個人の学習状況の把握", () => {
     expect(conceptLevel).toStrictEqual([3, 0]);
   });
 
+  test("解の公式を利用した2次方程式の問題を解けなかった時、必要な前提条件は 4-0(因数分解), 101-0(解の公式) である", () => {
+    const icm = InstructionalCurriculumMap.FirstUse();
+    const prerequisites = icm.getPrerequisiteConceptByIdLevelAndStatus(39, 2);
+
+    expect(prerequisites.some(([id, level]) => id === 101 && level === 0)).toBeTruthy();
+    expect(prerequisites.some(([id, level]) => id === 4 && level === 0)).toBeTruthy();
+  });
+
   test("因数分解の公式1が解けていて、因数分解を利用した2次方程式の問題を解けなかった時、必要な前提条件は存在しない", () => {
     const icm = InstructionalCurriculumMap.FirstUse();
 

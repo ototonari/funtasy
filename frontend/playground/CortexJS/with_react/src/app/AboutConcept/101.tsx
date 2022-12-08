@@ -28,7 +28,7 @@ export const About101: React.FC = () => {
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={3}>
           <Grid item xs={4}>
-            <About39aDescription />
+            <About101Description />
           </Grid>
 
           <Grid item xs={4}></Grid>
@@ -41,7 +41,7 @@ export const About101: React.FC = () => {
   );
 };
 
-export const About39aDescription = () => {
+export const About101Description = () => {
   const [, goToNext, isSameConcept] = useGotoConcept();
 
   const isSame = isSameConcept(ConceptId)

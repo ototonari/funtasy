@@ -3,7 +3,7 @@ import { QuestionType } from "../../Question/common";
 const ConceptId = 39
 
 enum Levels {
-  "因数分解",
+  "因数分解" = 1,
   "解の公式"
 }
 
@@ -29,34 +29,62 @@ export const p39 : QuestionType[] = [
     answers: ["-1", "3"],
     answerPlaceholder: "x=",
   },
-]
-
-// 解の公式1 を適用する問題
-export const step1: QuestionType[] = [
   {
     conceptId: ConceptId,
-    level: Levels.因数分解,
+    level: Levels.解の公式,
     expression: "x^2+7x+4=0",
     answers: ["-7/2-\\sqrt{33}/2", "\\sqrt{33}/2-7/2"],
     answerPlaceholder: "x=",
   },
   {
     conceptId: ConceptId,
-    level: Levels.因数分解,
+    level: Levels.解の公式,
     expression: "3x^2+4x-1=0",
     answers: ["-2/3-\\sqrt{7}/3", "\\sqrt{7}/3-2/3"],
     answerPlaceholder: "x=",
   },
   {
     conceptId: ConceptId,
-    level: Levels.因数分解,
+    level: Levels.解の公式,
     expression: "3x^2-8x-3=0",
     answers: ["3", "-1/3"],
     answerPlaceholder: "x=",
   },
   {
     conceptId: ConceptId,
-    level: Levels.因数分解,
+    level: Levels.解の公式,
+    expression: "4x^2+12x+9=0",
+    answers: ["-3/2"],
+    answerPlaceholder: "x=",
+  },
+]
+
+// 解の公式1 を適用する問題
+export const step1: QuestionType[] = [
+  {
+    conceptId: ConceptId,
+    level: Levels.解の公式,
+    expression: "x^2+7x+4=0",
+    answers: ["-7/2-\\sqrt{33}/2", "\\sqrt{33}/2-7/2"],
+    answerPlaceholder: "x=",
+  },
+  {
+    conceptId: ConceptId,
+    level: Levels.解の公式,
+    expression: "3x^2+4x-1=0",
+    answers: ["-2/3-\\sqrt{7}/3", "\\sqrt{7}/3-2/3"],
+    answerPlaceholder: "x=",
+  },
+  {
+    conceptId: ConceptId,
+    level: Levels.解の公式,
+    expression: "3x^2-8x-3=0",
+    answers: ["3", "-1/3"],
+    answerPlaceholder: "x=",
+  },
+  {
+    conceptId: ConceptId,
+    level: Levels.解の公式,
     expression: "4x^2+12x+9=0",
     answers: ["-3/2"],
     answerPlaceholder: "x=",

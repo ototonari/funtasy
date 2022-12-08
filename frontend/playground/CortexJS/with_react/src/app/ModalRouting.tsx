@@ -15,11 +15,12 @@ import { About39 } from "./AboutConcept/39";
 import { About101 } from "./AboutConcept/101";
 import { About4 } from "./AboutConcept/4";
 import { Concept } from "./PersonalLearningStatus/InstructionalCurriculumMap";
-import { conceptMatcher } from "./ConceptMatcher";
+import { conceptMatcher } from "./ConceptMatcher/conceptMatcher";
 
 // モーダルの遷移を考慮し、スタック型とする
 type ModalRouteState = {
   conceptIds: number[];
+  currentConceptLevel?: [number, number];
 };
 
 export const modalState = atom<ModalRouteState>({
