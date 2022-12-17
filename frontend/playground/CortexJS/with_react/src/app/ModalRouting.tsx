@@ -10,6 +10,7 @@ import {
 } from "recoil";
 import { ComingSoon } from "./AboutConcept/ComingSoon";
 import { conceptMatcher } from "./ConceptMatcher/conceptMatcher";
+import { Concept } from "./PersonalLearningStatus/InstructionalCurriculumMap";
 
 // モーダルの遷移を考慮し、スタック型とする
 type ModalRouteState = {
@@ -20,7 +21,7 @@ type ModalRouteState = {
 export const modalState = atom<ModalRouteState>({
   key: "ModalRouteState",
   default: {
-    conceptIds: [],
+    conceptIds: [Concept["因数分解"]],
   },
 });
 

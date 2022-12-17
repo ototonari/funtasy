@@ -20,7 +20,7 @@ export const conceptMatcher = (conceptId: number) => {
   }
 };
 
-export const descriptionMatcher = (conceptId: number) => {
+export const descriptionMatcher = (conceptId: number): React.ReactNode | null => {
   switch (conceptId) {
     case Concept.因数分解:
       return <About4Description />;

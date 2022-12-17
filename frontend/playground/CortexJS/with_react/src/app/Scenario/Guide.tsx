@@ -9,7 +9,7 @@ type Props = {};
 export const Guide: React.FC<Props> = () => {
   const [_, setRoute] = useRecoilState(routeState);
   const setGuideStatus = () => {
-    // GuideStatus.set(true);
+    GuideStorage.set(true);
     setRoute("check");
   };
   return (
@@ -25,14 +25,16 @@ export const Guide: React.FC<Props> = () => {
       }}
     >
       <Paper elevation={3}>
-        <p>案内</p>
-        <p>ブラウザのリロードは行わないで下さい(初めにもどってしまうよ)</p>
-        <p>
-          最後にGoogleFormアンケートがあります。答えていただいた方から抽選でアマギフをプレゼントいたします。
-        </p>
-        <Button variant="contained" onClick={setGuideStatus}>
-          はじめる
-        </Button>
+        <div style={{ margin: 20 }}>
+          <p>案内</p>
+          <p>ブラウザのリロードは行わないで下さい(初めにもどってしまうよ)</p>
+          <p>
+            最後にGoogleFormアンケートがあります。答えていただいた方から抽選でアマギフをプレゼントいたします。
+          </p>
+          <Button variant="contained" onClick={setGuideStatus}>
+            はじめる
+          </Button>
+        </div>
       </Paper>
     </Box>
   );

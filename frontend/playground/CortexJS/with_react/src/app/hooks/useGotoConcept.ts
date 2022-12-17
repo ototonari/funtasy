@@ -9,7 +9,7 @@ export const useGotoConcept = (): [
   const [modalRoute, setModalRoute] = useRecoilState(modalState);
   const goToNext = (conceptId: number) => () => {
     const conceptIds = [...modalRoute.conceptIds, conceptId];
-    setModalRoute({ conceptIds });
+    setModalRoute({ ...modalRoute, conceptIds });
   };
 
   const thisConceptId = modalRoute.conceptIds[modalRoute.conceptIds.length - 1];

@@ -3,7 +3,7 @@ import { Typography, Card, CardContent, Paper, Box, Divider } from "@mui/materia
 
 export const ab = (texts: string[] | React.ReactNode[]) =>
   texts.map((t, i) => (
-    <div key={i}>
+    <div key={i} style={{display: 'inline'}} >
       {t}
       <br />
     </div>
@@ -35,11 +35,17 @@ export const Text: React.FC<Props> = ({ children, pl: paddingLeft }) => (
   </Typography>
 );
 
-export const CardBox: React.FC<Props> = ({ children }) => (
+export const CardBox: React.FC<Props & { isHide?: boolean } > = ({ children, isHide }) => (
   <Card sx={{ minWidth: 275, marginBottom: 2 }}>
-    <CardContent>{children}</CardContent>
+    <CardContent sx={ isHide ? {backgroundColor: '#EAEAEA'} : {}} >{children}</CardContent>
   </Card>
 );
+
+export const Point: React.FC<Props> = ({ children }) => (
+  <Paper variant={"outlined"} sx={{ padding: 1, margin: 1 }}>
+    {children}
+  </Paper>
+)
 
 export const ScrollBoxOnModal: React.FC<Props & { isNoOutline?: boolean }> = ({
   children,
@@ -67,3 +73,7 @@ export const Border: React.FC<Props> = () => {
     </div>
   );
 };
+
+export const Space = () => (
+  <div style={{marginTop: 20}} />
+)

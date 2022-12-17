@@ -12,6 +12,7 @@ export const useInitialize = () => {
 
   useEffect(() => {
     Debug.resetICM();
+    // Debug.resetGuide();
     // ICMを利用するための初期化
     // localStorageから状態の復元
     const icm = ICMRepository.load();

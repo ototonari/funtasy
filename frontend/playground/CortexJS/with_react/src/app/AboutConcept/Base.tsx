@@ -13,7 +13,7 @@ export const Base: React.FC<Props> = ({ children }) => {
 
   const forBack = () => {
     const conceptIds = modalRoute.conceptIds.slice(0, -1);
-    setModalRoute({conceptIds})
+    setModalRoute({ ...modalRoute, conceptIds })
   }
 
   return (

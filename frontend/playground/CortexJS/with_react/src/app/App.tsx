@@ -12,7 +12,7 @@ export const App = () => {
     <div>
       <Routing />
       <ModalRouting />
-      <Graph width={300} height={300} fn={"x^2"} />
+      {/* <Graph width={300} height={300} fn={"x^2"} /> */}
       <MathWithLatex />
     </div>
   );
