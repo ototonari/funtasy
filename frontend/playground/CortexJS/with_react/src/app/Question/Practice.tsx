@@ -50,7 +50,7 @@ export const Practice: React.FC<Props> = ({
         <MathReadonly formula={expression} />
       </Grid>
       <Grid item xs={1}>
-          {answerPlaceholder ? answerPlaceholder : null}
+        {answerPlaceholder ? answerPlaceholder : null}
       </Grid>
       {answers.map((_, i) => (
         <Grid item xs key={i} sx={{ textAlign: "center" }}>
@@ -58,14 +58,20 @@ export const Practice: React.FC<Props> = ({
         </Grid>
       ))}
       <Grid item xs={1}>
-        {isOK ? <Check fontSize="large" color="success" /> : <HelpButton answers={answers} />}
+        {isOK ? (
+          <Check fontSize="large" color="success" />
+        ) : (
+          <HelpButton answers={answers} />
+        )}
       </Grid>
     </Grid>
   );
 };
 
-const HelpButton: React.FC<{answers: string[]}> = ({answers}) => {
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
+const HelpButton: React.FC<{ answers: string[] }> = ({ answers }) => {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null
+  );
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -76,7 +82,7 @@ const HelpButton: React.FC<{answers: string[]}> = ({answers}) => {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const id = open ? "simple-popover" : undefined;
 
   return (
     <>
@@ -89,16 +95,22 @@ const HelpButton: React.FC<{answers: string[]}> = ({answers}) => {
         anchorEl={anchorEl}
         onClose={handleClose}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
+          vertical: "top",
+          horizontal: "center",
         }}
         transformOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}      >
-        <Typography sx={{ p: 2 }}>
-          {answers.map((ans, i) => <div key={i}><MI f={ans} />{i === (answers.length - 1) ? null : ",　"}</div>)}
-        </Typography>
+          vertical: "bottom",
+          horizontal: "center",
+        }}
+      >
+        <div style={{padding: 10, display: 'flex', paddingLeft: 15, paddingRight: 15 }}>
+          {answers.map((ans, i) => (
+            <div key={i}>
+              <MI f={ans} />
+              {i === answers.length - 1 ? null : " ,　"}
+            </div>
+          ))}
+        </div>
       </Popover>
     </>
   );

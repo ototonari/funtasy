@@ -11,7 +11,7 @@ export const App = () => {
     <div>
       <Routing />
       <ModalRouting />
-      <MathWithLatex />
+      {/* <MathWithLatex /> */}
     </div>
   );
 };
