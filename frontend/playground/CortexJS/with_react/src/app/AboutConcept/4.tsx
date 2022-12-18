@@ -555,7 +555,7 @@ export const About4Description = () => {
       <Text pl={2}>
         {ab([
           <>
-            ① <MI f="a^2+2ab+b^2=(a+b)^2" />, <MI f="a^2-2ab+b^2=(a-b)^2" />
+            ① <MI f="a^2+2ab+b^2=(a+b)^2" /> ,　<MI f="a^2-2ab+b^2=(a-b)^2" />
           </>,
           <>
             ② <MI f="a^2-b^2=(a+b)(a-b)" />

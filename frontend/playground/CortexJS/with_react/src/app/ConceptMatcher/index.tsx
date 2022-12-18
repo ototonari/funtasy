@@ -32,7 +32,9 @@ export const prerequisiteConcepts = (icm: InstructionalCurriculumMap, {conceptId
     allPrerequisiteConceptIds.add(id);
   })
 
-  const conceptComponents = Array.from(allPrerequisiteConceptIds.values()).sort().map((conceptId, i) => {
+  console.log(Array.from(allPrerequisiteConceptIds.values()).sort((a, b) => a > b ? -1 : 1))
+
+  const conceptComponents = Array.from(allPrerequisiteConceptIds.values()).sort((a, b) => a > b ? -1 : 1).map((conceptId, i) => {
     const elm = descriptionMatcher(conceptId);
     if (elm === null) return null;
     else return (
@@ -64,7 +66,7 @@ export const unresolveConcepts = (icm: InstructionalCurriculumMap, {conceptId, l
     conceptIds.add(id);
   })
 
-  const conceptComponents = Array.from(allPrerequisiteConceptIds.values()).sort().map((conceptId, i) => {
+  const conceptComponents = Array.from(allPrerequisiteConceptIds.values()).sort((a, b) => a > b ? -1 : 1).map((conceptId, i) => {
     const elm = descriptionMatcher(conceptId);
     const hasAlreadyResolved = !conceptIds.has(conceptId);
     if (elm === null) return null;

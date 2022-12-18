@@ -97,7 +97,7 @@ const HelpButton: React.FC<{answers: string[]}> = ({answers}) => {
           horizontal: 'center',
         }}      >
         <Typography sx={{ p: 2 }}>
-          {answers.map((ans, i) => <><MI f={ans} />{i === (answers.length - 1) ? null : ",　"}</>)}
+          {answers.map((ans, i) => <div key={i}><MI f={ans} />{i === (answers.length - 1) ? null : ",　"}</div>)}
         </Typography>
       </Popover>
     </>

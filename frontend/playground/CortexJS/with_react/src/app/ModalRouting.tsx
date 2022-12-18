@@ -21,7 +21,7 @@ type ModalRouteState = {
 export const modalState = atom<ModalRouteState>({
   key: "ModalRouteState",
   default: {
-    conceptIds: [Concept["因数分解"]],
+    conceptIds: [],
   },
 });
 
@@ -35,7 +35,7 @@ export const ModalRouting = () => {
     const conceptId = route.conceptIds[route.conceptIds.length - 1];
     const Component = conceptMatcher(conceptId);
     if (Component === null) {
-      return <ComingSoon />
+      return <ComingSoon />;
     } else {
       return Component;
     }
@@ -43,14 +43,12 @@ export const ModalRouting = () => {
 
   return (
     <Modal
-        open={isOpenModal}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <div>
-          {router(modalRoute)}
-        </div>
-      </Modal>
+      open={isOpenModal}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <div>{router(modalRoute)}</div>
+    </Modal>
   );
 };

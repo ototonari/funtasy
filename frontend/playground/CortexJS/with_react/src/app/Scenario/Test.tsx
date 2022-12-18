@@ -4,8 +4,7 @@ import { QuestionWithAnswers } from "../Question/QuestionWithAnswers";
 import { QuestionType } from "../Question/common";
 import { useRecoilState } from "recoil";
 import { icmState } from "../PersonalLearningStatus";
-import { P39, p39, P39Levels } from "../database/questions/39";
-import { QuestionPicker } from "../database/questions";
+import { P39 } from "../database/questions/39";
 import { P4 } from "../database/questions/4";
 
 type Props = {
