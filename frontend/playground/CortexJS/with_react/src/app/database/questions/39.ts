@@ -184,6 +184,7 @@ export const P39 = {
   level3,
   all,
   random: random(),
+  randomFunc: random,
 }
 
 // $$ -\frac{7}{2}-\frac{\sqrt{33}}{2} $$

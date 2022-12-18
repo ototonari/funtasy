@@ -1,0 +1,1 @@
+export type TestStateType = 'init' | 'started' | 'done'

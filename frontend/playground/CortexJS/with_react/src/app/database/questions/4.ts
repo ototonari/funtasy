@@ -331,4 +331,5 @@ export const P4 = {
   ex21,
   all,
   random: random(),
+  randomFunc: random,
 }

@@ -5,6 +5,7 @@ import { Check } from "./Scenario/Check";
 import { Guide } from "./Scenario/Guide";
 import { atom, useRecoilState } from "recoil";
 import { TestContainer } from "./Scenario/Test";
+import { ContinuousTest } from "./Scenario/ContinuousTest/ContinuousTest";
 
 type RouteState = "init" | "check" | "test";
 
@@ -26,10 +27,12 @@ export const Routing = () => {
     switch (route) {
       case "init":
         return <Guide />;
-      case "check":
-        return <Check questions={presets} />;
+      // case "check":
+      //   return <Check questions={presets} />;
+      // case "test":
+      //   return <TestContainer />;
       case "test":
-        return <TestContainer />;
+        return <ContinuousTest />;
     }
   };
 
