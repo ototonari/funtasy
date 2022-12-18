@@ -1,8 +1,12 @@
 import React, { CSSProperties, useEffect, useRef } from "react";
 import { createReadonlyInlineMfeElement } from "./common";
 
-export const MathInline: React.FC<{ formula?: string }> = ({
-  formula = "",
+type Props = {
+  f?: string
+}
+
+const MathInline: React.FC<Props> = ({
+  f: formula = "",
 }) => {
   const ref = useRef(null);
 
@@ -17,3 +21,5 @@ export const MathInline: React.FC<{ formula?: string }> = ({
 const style: CSSProperties = {
   display: "inline-block",
 };
+
+export const MI = React.memo(MathInline);

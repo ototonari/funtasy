@@ -10,6 +10,7 @@ import {
 } from "recoil";
 import { ComingSoon } from "./AboutConcept/ComingSoon";
 import { conceptMatcher } from "./ConceptMatcher/conceptMatcher";
+import { Concept } from "./PersonalLearningStatus/InstructionalCurriculumMap";
 
 // モーダルの遷移を考慮し、スタック型とする
 type ModalRouteState = {
@@ -34,7 +35,7 @@ export const ModalRouting = () => {
     const conceptId = route.conceptIds[route.conceptIds.length - 1];
     const Component = conceptMatcher(conceptId);
     if (Component === null) {
-      return <ComingSoon />
+      return <ComingSoon />;
     } else {
       return Component;
     }
@@ -42,14 +43,12 @@ export const ModalRouting = () => {
 
   return (
     <Modal
-        open={isOpenModal}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <div>
-          {router(modalRoute)}
-        </div>
-      </Modal>
+      open={isOpenModal}
+      onClose={handleClose}
+      aria-labelledby="modal-modal-title"
+      aria-describedby="modal-modal-description"
+    >
+      <div>{router(modalRoute)}</div>
+    </Modal>
   );
 };

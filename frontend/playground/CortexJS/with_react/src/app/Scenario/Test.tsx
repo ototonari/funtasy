@@ -4,18 +4,30 @@ import { QuestionWithAnswers } from "../Question/QuestionWithAnswers";
 import { QuestionType } from "../Question/common";
 import { useRecoilState } from "recoil";
 import { icmState } from "../PersonalLearningStatus";
+import { P39 } from "../database/questions/39";
+import { P4 } from "../database/questions/4";
 
 type Props = {
+  testLabel: string;
   questions: QuestionType[];
 };
 
-export const Check: React.FC<Props> = ({ questions }) => {
+export const TestContainer: React.FC<{}> = ({}) => {
+  return (
+    <div>
+      <Test testLabel={`次の式を因数分解せよ。`} questions={P4.random} />
+      <Test testLabel={`次の二次方程式を解け。`} questions={P39.random} />
+    </div>
+  );
+};
+
+const Test: React.FC<Props> = ({ testLabel, questions }) => {
   const [_icmState, setIcmState] = useRecoilState(icmState);
   const [isFeedback, setFeedback] = useState(false);
   const [results, setResults] = useState(questions.map(() => false));
   const doFeedback = () => {
     setFeedback(true);
-  }
+  };
 
   const setResult = (index: number) => (result: boolean) => {
     results[index] = result;
@@ -38,9 +50,9 @@ export const Check: React.FC<Props> = ({ questions }) => {
       }
 
       // ICMRepository.save(icm);
-      setIcmState({icm: icm});
+      setIcmState({ icm: icm });
     }
-  }, [isFeedback])
+  }, [isFeedback]);
 
   return (
     <Box
@@ -55,17 +67,19 @@ export const Check: React.FC<Props> = ({ questions }) => {
     >
       <Paper elevation={3}>
         <div style={{ margin: 20 }}>
-          <p>理解度テスト</p>
-          {questions.map((q, i) => (
-            <QuestionWithAnswers
-              key={i}
-              {...q}
-              setResult={setResult(i)}
-              feedback={isFeedback}
-            />
-          ))}
-          <Button variant="contained" onClick={doFeedback}>
-            できた
+          <p>{testLabel}</p>
+          <div style={{ marginLeft: 20 }}>
+            {questions.map((q, i) => (
+              <QuestionWithAnswers
+                key={i}
+                {...q}
+                setResult={setResult(i)}
+                feedback={isFeedback}
+              />
+            ))}
+          </div>
+          <Button variant="outlined" onClick={doFeedback}>
+            確認してみる
           </Button>
         </div>
       </Paper>

@@ -1,7 +1,5 @@
 import { MathfieldElement } from "mathlive";
 import React, { useEffect, useRef } from "react";
-import { Base } from "./Base";
-import { createMfeWithoutKeyboardElement } from "./common";
 
 type Props = {
   onChange?: (formula: string) => void
@@ -35,4 +33,5 @@ const inlineStyle = `
 border-radius: 4px;
 border: 1px solid rgba(0, 0, 0, .3);
 width: 100%;
+padding-left: 10px;
 `

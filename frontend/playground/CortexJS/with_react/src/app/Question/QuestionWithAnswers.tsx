@@ -3,10 +3,9 @@ import { BoxedExpression } from "@cortex-js/compute-engine";
 import { MathReadonly } from "../MathLive/MathReadonly";
 import { MathInput } from "../MathLive/MathInput";
 import { ce } from "../ComputeEngine";
-import { Grid } from "@mui/material";
-import { Check, WarningAmber, Info } from "@mui/icons-material";
+import { Grid, IconButton } from "@mui/material";
+import { Check, WarningAmber, Info, Lightbulb } from "@mui/icons-material";
 import { QuestionType } from "./common";
-import IconButton from '@mui/material/IconButton';
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
 import { icmState } from "../PersonalLearningStatus";
@@ -62,11 +61,9 @@ export const QuestionWithAnswers: React.FC<Props> = ({
       <Grid item xs={5}>
         <MathReadonly formula={expression} />
       </Grid>
-      {answerPlaceholder ? (
-        <Grid item xs={1}>
-          {answerPlaceholder}
+      <Grid item xs={1}>
+          {answerPlaceholder ? answerPlaceholder : null}
         </Grid>
-      ) : null}
       {answers.map((_, i) => (
         <Grid item xs key={i}>
           <MathInput onChange={setUserAnswer(i)} />
@@ -79,7 +76,7 @@ export const QuestionWithAnswers: React.FC<Props> = ({
               <Check fontSize="large" color="success" />
             ) : (
               <IconButton onClick={aboutConcept} >
-                <Info fontSize="medium" color="primary" />
+                <Lightbulb fontSize="medium" color="primary" />
               </IconButton>
             )
           ) : null

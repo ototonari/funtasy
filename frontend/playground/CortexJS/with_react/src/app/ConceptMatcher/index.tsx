@@ -22,23 +22,60 @@ type Props = {
   level: number,
 }
 
-export const unresolveConcepts = (icm: InstructionalCurriculumMap, {conceptId, level}: Props) => {
-  const unresolvedConceptLevels = icm.getPrerequisiteConceptByIdLevelAndStatus(conceptId, level);
+export const prerequisiteConcepts = (icm: InstructionalCurriculumMap, {conceptId, level}: Props) => {
+  const allPrerequisiteConcepts = icm.getAllPrerequisiteConceptsByIdLevel(conceptId, level);
+  const allPrerequisiteConceptIds = new Set<number>();
+  allPrerequisiteConceptIds.add(conceptId);
 
-  if (unresolvedConceptLevels.length === 0) return null;
-  
+  allPrerequisiteConcepts.forEach((conceptLevel) => {
+    const [id, level] = conceptLevel;
+    allPrerequisiteConceptIds.add(id);
+  })
+
+  console.log(Array.from(allPrerequisiteConceptIds.values()).sort((a, b) => a > b ? -1 : 1))
+
+  const conceptComponents = Array.from(allPrerequisiteConceptIds.values()).sort((a, b) => a > b ? -1 : 1).map((conceptId, i) => {
+    const elm = descriptionMatcher(conceptId);
+    if (elm === null) return null;
+    else return (
+      <CardBox key={i}>
+        {descriptionMatcher(conceptId)}
+      </CardBox>
+    )
+  });
+
+  return conceptComponents;
+}
+
+export const unresolveConcepts = (icm: InstructionalCurriculumMap, {conceptId, level}: Props) => {
+  // 全ての前提条件を取得する
+  const allPrerequisiteConcepts = icm.getAllPrerequisiteConceptsByIdLevel(conceptId, level);
+  console.log("allPrerequisiteConcepts", allPrerequisiteConcepts);
+  const allPrerequisiteConceptIds = new Set<number>();
+  allPrerequisiteConcepts.forEach((conceptLevel) => {
+    const [id, level] = conceptLevel;
+    allPrerequisiteConceptIds.add(id);
+  })
+
+  // 学習者が不足している前提条件を取得する
+  const unresolvedConceptLevels = icm.getPrerequisiteConceptByIdLevelAndStatus(conceptId, level);
+  console.log("unresolvedConceptLevels", unresolvedConceptLevels)
   const conceptIds = new Set<number>();
   unresolvedConceptLevels.forEach((conceptLevel) => {
     const [id, level] = conceptLevel;
     conceptIds.add(id);
   })
 
-  console.log("unresolvedConceptLevels", unresolvedConceptLevels)
-  const conceptComponents = Array.from(conceptIds.values()).sort().map((conceptId, i) => (
-    <CardBox key={i} >
-      {descriptionMatcher(conceptId)}
-    </CardBox>
-  ));
+  const conceptComponents = Array.from(allPrerequisiteConceptIds.values()).sort((a, b) => a > b ? -1 : 1).map((conceptId, i) => {
+    const elm = descriptionMatcher(conceptId);
+    const hasAlreadyResolved = !conceptIds.has(conceptId);
+    if (elm === null) return null;
+    else return (
+      <CardBox key={i} isHide={hasAlreadyResolved}>
+        {descriptionMatcher(conceptId)}
+      </CardBox>
+    )
+  });
 
   return conceptComponents
 }

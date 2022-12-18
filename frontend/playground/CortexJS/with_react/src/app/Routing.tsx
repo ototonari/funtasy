@@ -4,8 +4,9 @@ import { presets } from "./database/questions";
 import { Check } from "./Scenario/Check";
 import { Guide } from "./Scenario/Guide";
 import { atom, useRecoilState } from "recoil";
+import { TestContainer } from "./Scenario/Test";
 
-type RouteState = "init" | "check";
+type RouteState = "init" | "check" | "test";
 
 export const routeState = atom<RouteState>({
   key: "RouteState", // unique ID (with respect to other atoms/selectors)
@@ -17,7 +18,7 @@ export const Routing = () => {
   useEffect(() => {
     const hasGuide = GuideStorage.get();
     if (hasGuide) {
-      setRoute("check");
+      setRoute("test");
     }
   }, []);
 
@@ -27,6 +28,8 @@ export const Routing = () => {
         return <Guide />;
       case "check":
         return <Check questions={presets} />;
+      case "test":
+        return <TestContainer />;
     }
   };
 

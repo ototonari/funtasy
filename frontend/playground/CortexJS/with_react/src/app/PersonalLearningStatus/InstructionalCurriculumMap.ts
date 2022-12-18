@@ -41,6 +41,7 @@ const data: InstructionalCurriculumMapData[] = [
   [Concept.因数分解, 0, [[3, 0]]],
   [Concept["2次方程式の解とその判別"], 1, [[4, 0]]],
   [Concept["2次方程式の解とその判別"], 2, [[4, 0], [101, 0]]],
+  [Concept["2次方程式の解とその判別"], 3, [[4, 0], [101, 0]]],
   [Concept.解の公式, 0, []],
 ]
 
