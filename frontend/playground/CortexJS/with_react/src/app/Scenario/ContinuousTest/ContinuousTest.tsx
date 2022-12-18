@@ -39,13 +39,13 @@ export const ContinuousTest: React.FC<Props> = () => {
       }}
     >
       <Grid container >
-        <Grid item xs={7}>
+        <Grid item xs>
           <Typography variant={"h5"} >理解度テスト</Typography>
         </Grid>
         <Grid item xs={2} style={{display: "flex", alignItems: "center" }} >
           <CountDownTimer state={testState} onStopHandler={onStartedHandler} />
         </Grid>
-        <Grid item xs={3} style={{display: "flex", justifyContent: "center" }}>
+        <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
           <TriggerButton state={testState} onInitHandler={onInitHandler} onStartedHandler={onStartedHandler} onDoneHandler={onDoneHandler} />
         </Grid>
         <Grid item xs={12}>

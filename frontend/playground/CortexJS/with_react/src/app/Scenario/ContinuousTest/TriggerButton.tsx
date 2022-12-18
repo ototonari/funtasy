@@ -13,15 +13,15 @@ export const TriggerButton: React.FC<TriggerButtonProps> = ({state, onInitHandle
   switch (state) {
     case 'init':
       return (
-        <Button variant="contained" onClick={onInitHandler}>はじめる</Button>
+        <Button variant="contained" sx={{width: 120}} onClick={onInitHandler}>はじめる</Button>
       )
     case 'started':
       return (
-        <Button variant="outlined" onClick={onStartedHandler}>おわる</Button>
+        <Button variant="outlined" sx={{width: 120}} onClick={onStartedHandler}>おわる</Button>
       )
     case 'done':
       return (
-        <Button variant="contained" onClick={onDoneHandler}>もういちど</Button>
+        <Button variant="contained" sx={{width: 120}} onClick={onDoneHandler}>もういちど</Button>
       )
   }
 }
