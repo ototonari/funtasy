@@ -47,7 +47,7 @@ export const CountDownTimer: React.FC<CountDownTimerProps> = ({state, onStopHand
   return (
     <>
       <Timer color="action" />
-      <Typography variant="h6" style={{marginTop: 2}} >
+      <Typography variant="h6" style={{marginTop: 2, marginLeft: 4}} >
         {timeString}
       </Typography>
     </>

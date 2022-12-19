@@ -2,7 +2,7 @@ import { Paper, Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { TestStateType } from ".";
+import { ContinuousTestState, questionsToState, questionsUpdater, TestStateType } from ".";
 import { P39 } from "../../database/questions/39";
 import { P4 } from "../../database/questions/4";
 import { icmState } from "../../PersonalLearningStatus";
@@ -15,32 +15,44 @@ type Props = {
 };
 
 export function TestContainer({ state }: Props) {
+  const [continuousTestState, setContinuousTestState] =
+    useRecoilState(ContinuousTestState);
   const [questions, setQuestions] = useState([P4.random, P39.random]);
   const [p4, p39] = questions;
-  const isFeedback = state === 'done' ? true : false;
-
+  const isFeedback = state === "done" ? true : false;
+  // console.log("result: ", continuousTestState.result);
+  
   useEffect(() => {
-    if (state === 'started') {
-      setQuestions([P4.randomFunc(), P39.randomFunc()])
+    if (state === "started") {
+      setQuestions([P4.randomFunc(), P39.randomFunc()]);
+      setContinuousTestState({
+        result: questionsToState(questions),
+      });
     }
-  }, [state])
+  }, [state]);
 
-  if (state === 'init') {
-    return (
-      <Space />
-    )
+  if (state === "init") {
+    return <Space />;
   } else {
     return (
       <div>
-        <Test testLabel={`次の式を因数分解せよ。`} questions={p4} isFeedback={isFeedback} />
+        <Test
+          testLabel={`次の式を因数分解せよ。`}
+          questions={p4}
+          isFeedback={isFeedback}
+        />
         <Space />
         <BorderLine />
         <Space />
-        <Test testLabel={`次の二次方程式を解け。`} questions={p39} isFeedback={isFeedback} />
+        <Test
+          testLabel={`次の二次方程式を解け。`}
+          questions={p39}
+          isFeedback={isFeedback}
+        />
       </div>
-    );  
+    );
   }
-};
+}
 
 type TestProps = {
   testLabel: string;
@@ -48,7 +60,10 @@ type TestProps = {
   isFeedback: boolean;
 };
 
-export function Test ({ testLabel, questions, isFeedback }: TestProps) {
+export function Test({ testLabel, questions, isFeedback }: TestProps) {
+  const [continuousTestState, setContinuousTestState] =
+    useRecoilState(ContinuousTestState);
+
   const [_icmState, setIcmState] = useRecoilState(icmState);
   const [results, setResults] = useState(questions.map(() => false));
 
@@ -68,6 +83,8 @@ export function Test ({ testLabel, questions, isFeedback }: TestProps) {
 
         if (result === true) {
           icm.registerStatus(question.conceptId, question.level);
+
+          setContinuousTestState((state) => questionsUpdater(state, question.conceptId, i))
         }
       }
 
@@ -100,4 +117,4 @@ export function Test ({ testLabel, questions, isFeedback }: TestProps) {
       </div>
     </Box>
   );
-};
+}

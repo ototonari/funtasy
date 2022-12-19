@@ -9,14 +9,17 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import { TriggerButton } from "./TriggerButton";
-import { TestStateType } from ".";
+import { ContinuousTestState, TestStateType } from ".";
 import { CountDownTimer } from "./CountDownTimer";
 import { TestContainer } from "./TestContainer";
 import { BorderLine, Space } from "./utils";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { Score } from "./Score";
 
 type Props = {};
 
 export const ContinuousTest: React.FC<Props> = () => {
+
   const [testState, setTestState] = useState<TestStateType>('init');
   const onInitHandler = () => {
     setTestState('started');
@@ -44,6 +47,9 @@ export const ContinuousTest: React.FC<Props> = () => {
         </Grid>
         <Grid item xs={2} style={{display: "flex", alignItems: "center" }} >
           <CountDownTimer state={testState} onStopHandler={onStartedHandler} />
+        </Grid>
+        <Grid item xs={2} style={{display: "flex", alignItems: "center", justifyContent: "center" }} >
+          <Score state={testState} />
         </Grid>
         <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
           <TriggerButton state={testState} onInitHandler={onInitHandler} onStartedHandler={onStartedHandler} onDoneHandler={onDoneHandler} />
