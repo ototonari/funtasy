@@ -41,19 +41,22 @@ export const ContinuousTest: React.FC<Props> = () => {
         padding: 20,
       }}
     >
-      <Grid container >
+      <Grid container>
         <Grid item xs>
           <Typography variant={"h5"} >理解度テスト</Typography>
-        </Grid>
-        <Grid item xs={2} style={{display: "flex", alignItems: "center" }} >
-          <CountDownTimer state={testState} onStopHandler={onStartedHandler} />
         </Grid>
         <Grid item xs={2} style={{display: "flex", alignItems: "center", justifyContent: "center" }} >
           <Score state={testState} />
         </Grid>
+        <Grid item xs={2} style={{display: "flex", alignItems: "center" }} >
+          <CountDownTimer state={testState} onStopHandler={onStartedHandler} />
+        </Grid>
         <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
           <TriggerButton state={testState} onInitHandler={onInitHandler} onStartedHandler={onStartedHandler} onDoneHandler={onDoneHandler} />
         </Grid>
+      </Grid>
+
+      <Grid container>
         <Grid item xs={12}>
           <Space />
           <BorderLine />
