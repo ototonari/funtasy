@@ -1,4 +1,4 @@
-import { MathfieldElement, makeSharedVirtualKeyboard } from "mathlive";
+import { MathfieldElement } from "mathlive";
 
 export const createMfeElement = (formula: string): MathfieldElement => {
   const mfe = new MathfieldElement();

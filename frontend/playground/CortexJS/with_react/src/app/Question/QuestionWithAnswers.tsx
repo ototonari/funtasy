@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { BoxedExpression } from "@cortex-js/compute-engine";
 import { MathReadonly } from "../MathLive/MathReadonly";
 import { MathInput } from "../MathLive/MathInput";
 import { ce } from "../ComputeEngine";
@@ -8,8 +7,6 @@ import { Check, WarningAmber, Info, Lightbulb } from "@mui/icons-material";
 import { QuestionType } from "./common";
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
-import { icmState } from "../PersonalLearningStatus";
-
 
 type Props = QuestionType & {
   setResult?: (s: boolean) => void;
