@@ -23,5 +23,5 @@ export const TestUserScore = async () => {
   await UserScore.appendScore(uid, score);
 
   const fetchedScore = await UserScore.get(uid);
-  console.log(fetchedScore);
+  // console.log(fetchedScore);
 }

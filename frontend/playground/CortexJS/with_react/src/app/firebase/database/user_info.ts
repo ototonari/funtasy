@@ -2,8 +2,9 @@ import { getDatabase, ref, child, get, set } from "firebase/database";
 
 const path = "UserInfo";
 
-type UserInfoType = {
-
+export type UserInfoType = {
+  gender: string
+  age: string
 }
 
 export const UserInfo = {

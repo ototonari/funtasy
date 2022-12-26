@@ -28,7 +28,7 @@ export const UserScore = {
 
       if (snapshot.exists()) {
         const value = snapshot.val() as UserScoreType[];
-        console.log("info: UserScore.get, snapshot: ", value);
+        // console.log("info: UserScore.get, snapshot: ", value);
 
         return value;
       } else {
