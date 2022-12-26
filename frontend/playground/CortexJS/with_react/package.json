@@ -22,6 +22,7 @@
     "@types/react-dom": "18.0.6",
     "clean-webpack-plugin": "^4.0.0",
     "desmos-react": "^1.1.1",
+    "dotenv-webpack": "^8.0.1",
     "firebase": "^9.15.0",
     "function-plot": "^1.23.1",
     "html-webpack-plugin": "^5.5.0",
