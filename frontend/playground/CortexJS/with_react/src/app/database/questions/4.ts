@@ -307,11 +307,11 @@ const random = (): QuestionType[] => {
     level1[_l1],
     level1[_l1+1],
     level2[_l2],
-    level2[_l2+1],
+    // level2[_l2+1],
     level3[_l3],
-    level3[_l3+1],
+    // level3[_l3+1],
     level4[_l4],
-    level4[_l4+1],
+    // level4[_l4+1],
   ];
 
   return selection;
