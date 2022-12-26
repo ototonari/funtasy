@@ -1,10 +1,12 @@
 import { Paper, Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { ContinuousTestState, questionsToState, questionsUpdater, TestStateType } from ".";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { ContinuousTestState, continuousTestStateToScore, questionsToState, questionsUpdater, TestStateType } from ".";
 import { P39 } from "../../database/questions/39";
 import { P4 } from "../../database/questions/4";
+import { authState } from "../../firebase/auth";
+import { UserScore } from "../../firebase/database/user_score";
 import { icmState } from "../../PersonalLearningStatus";
 import { QuestionType } from "../../Question/common";
 import { QuestionWithAnswers } from "../../Question/QuestionWithAnswers";
@@ -17,6 +19,7 @@ type Props = {
 export function TestContainer({ state }: Props) {
   const [continuousTestState, setContinuousTestState] =
     useRecoilState(ContinuousTestState);
+  const { uid, state: authnState } = useRecoilValue(authState);
   const [questions, setQuestions] = useState([P4.random, P39.random]);
   const [p4, p39] = questions;
   const isFeedback = state === "done" ? true : false;
@@ -28,6 +31,13 @@ export function TestContainer({ state }: Props) {
       setContinuousTestState({
         result: questionsToState(questions),
       });
+    }
+
+    if (state === "done") {
+      if (authnState === "updated") {
+        // Firebaseに結果を保存する
+        UserScore.appendScore(uid, continuousTestStateToScore(continuousTestState));
+      }
     }
   }, [state]);
 

@@ -1,4 +1,5 @@
 import { atom } from "recoil";
+import { UserScoreType } from "../../firebase/database/user_score";
 import { QuestionType } from "../../Question/common";
 
 export type TestStateType = "init" | "started" | "done";
@@ -65,4 +66,24 @@ export const countResults = ({ result }: State): [number, number] => {
   );
 
   return [son, mother];
+};
+
+export const continuousTestStateToScore = (state: State): UserScoreType => {
+  const { result } = state;
+  const [molecule, denominator] = countResults(state);
+  const userScore: UserScoreType = {
+    score: {
+      denominator,
+      molecule,
+    },
+    answers: [],
+  };
+
+  result.forEach((qs) => {
+    qs.forEach((q) => {
+      userScore.answers.push(q);
+    });
+  });
+
+  return userScore;
 };
