@@ -7,7 +7,7 @@ import { atom, useRecoilState } from "recoil";
 import { TestContainer } from "./Scenario/Test";
 import { ContinuousTest } from "./Scenario/ContinuousTest/ContinuousTest";
 
-type RouteState = "init" | "check" | "test";
+type RouteState = "init" | "test";
 
 export const routeState = atom<RouteState>({
   key: "RouteState", // unique ID (with respect to other atoms/selectors)
