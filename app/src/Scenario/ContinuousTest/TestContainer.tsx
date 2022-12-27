@@ -36,7 +36,7 @@ export function TestContainer({ state }: Props) {
     if (state === "done") {
       if (authnState === "updated") {
         // Firebaseに結果を保存する
-        // UserScore.appendScore(uid, continuousTestStateToScore(continuousTestState));
+        UserScore.appendScore(uid, continuousTestStateToScore(continuousTestState));
       }
     }
   }, [state]);

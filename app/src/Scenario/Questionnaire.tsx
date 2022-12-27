@@ -89,7 +89,7 @@ const QuestionnaireForm: React.FC<{ handleReady: (v: boolean) => void }> = ({han
     const user = new User(genderValue, ageValue);
     if (authnState === "updated" && user.isValid()) {
       console.log("valid user.");
-      // UserInfo.set(uid, user.toUserInfoParam());
+      UserInfo.set(uid, user.toUserInfoParam());
 
       handleReady(true);
     } else {

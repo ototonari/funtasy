@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { Debug, ICMStorage } from "../database/concepts/LocalStorage";
 import { authState } from "../firebase/auth";
-// import { SetAuthStateListener } from "../firebase/auth/auth_state_listener";
+import { SetAuthStateListener } from "../firebase/auth/auth_state_listener";
 import { icmState } from "../PersonalLearningStatus";
 import { ICMRepository } from "../PersonalLearningStatus/InstructionalCurriculumMap";
 
@@ -11,7 +11,7 @@ import { ICMRepository } from "../PersonalLearningStatus/InstructionalCurriculum
  */
 export const useInitialize = () => {
   const [, setIcmState] = useRecoilState(icmState);
-  const [{uid}, setAuthState] = useRecoilState(authState);
+  const [, setAuthState] = useRecoilState(authState);
 
   useEffect(() => {
     // Debug.resetICM();
@@ -24,15 +24,15 @@ export const useInitialize = () => {
 
     Debug.showStatus();
 
-    // const authUnsubscribe = SetAuthStateListener((uid) => {
-    //   setAuthState({
-    //     state: 'updated',
-    //     uid: uid,
-    //   })
-    // });
+    const authUnsubscribe = SetAuthStateListener((uid) => {
+      setAuthState({
+        state: 'updated',
+        uid: uid,
+      })
+    });
 
     return () => {
-      // authUnsubscribe();
+      authUnsubscribe();
     }
   }, []);
 };

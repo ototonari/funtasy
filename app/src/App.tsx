@@ -11,7 +11,7 @@ import { Routing } from "./Routing";
 Debug.resetICM();
 Debug.resetGuide();
 
-// authAnonymously();
+authAnonymously();
 // TestUserScore();
 
 console.log("REACT_APP_FIREBASE_PROJECT_ID", process.env.REACT_APP_FIREBASE_PROJECT_ID);
