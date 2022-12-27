@@ -1,4 +1,4 @@
-import { Paper, Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -71,7 +71,7 @@ type TestProps = {
 };
 
 export function Test({ testLabel, questions, isFeedback }: TestProps) {
-  const [continuousTestState, setContinuousTestState] =
+  const [, setContinuousTestState] =
     useRecoilState(ContinuousTestState);
 
   const [_icmState, setIcmState] = useRecoilState(icmState);

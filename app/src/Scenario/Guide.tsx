@@ -1,20 +1,12 @@
 import {
-  Box,
-  Button,
   IconButton,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
   Grid,
-  Paper,
-  Radio,
-  RadioGroup,
   Typography,
 } from "@mui/material";
 import { CheckCircle } from "@mui/icons-material";
 import { Text, Title, ab, Space } from "../AboutConcept/utils" 
-import React, { useEffect, useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import React from "react";
+import { useRecoilState } from "recoil";
 import { GuideStorage } from "../database/concepts/LocalStorage";
 import { routeState } from "../Routing";
 import { BaseContainer } from "./utils";
@@ -22,7 +14,7 @@ import { BaseContainer } from "./utils";
 type Props = {};
 
 export const Guide: React.FC<Props> = () => {
-  const [_, setRoute] = useRecoilState(routeState);
+  const [, setRoute] = useRecoilState(routeState);
   const setGuideStatus = () => {
     GuideStorage.set(true);
     setRoute("questionnaire");

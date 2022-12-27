@@ -1,16 +1,14 @@
 import {
-  Box,
   Button,
   FormControl,
   FormControlLabel,
   FormLabel,
   Grid,
-  Paper,
   Radio,
   RadioGroup,
   Typography,
 } from "@mui/material";
-import { Text, Title, ab, Space } from "../AboutConcept/utils" 
+import { Text, ab, Space } from "../AboutConcept/utils" 
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { UserInfoStorage } from "../database/concepts/LocalStorage";
@@ -24,7 +22,7 @@ type Props = {};
 export const Questionnaire: React.FC<Props> = () => {
   const [ready, setReady] = useState(false);
 
-  const [_, setRoute] = useRecoilState(routeState);
+  const [, setRoute] = useRecoilState(routeState);
   const setGuideStatus = () => {
     UserInfoStorage.set(true);
     setRoute("test");
