@@ -16,8 +16,6 @@ import { Text, Title, ab, Space } from "../AboutConcept/utils"
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { GuideStorage } from "../database/concepts/LocalStorage";
-import { authState } from "../firebase/auth";
-import { UserInfo, UserInfoType } from "../firebase/database/user_info";
 import { routeState } from "../Routing";
 import { BaseContainer } from "./utils";
 
