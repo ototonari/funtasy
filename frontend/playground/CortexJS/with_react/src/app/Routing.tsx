@@ -4,6 +4,7 @@ import { Guide } from "./Scenario/Guide";
 import { atom, useRecoilState } from "recoil";
 import { ContinuousTest } from "./Scenario/ContinuousTest/ContinuousTest";
 import { Questionnaire } from "./Scenario/Questionnaire";
+import { Finish } from "./Scenario/Finish/Finish";
 
 type RouteState = "guide" | "questionnaire" | "test" | "finish";
 
@@ -37,7 +38,7 @@ export const Routing = () => {
       case "test":
         return <ContinuousTest />;
       case "finish":
-        return <div>finish</div>
+        return <Finish />
     }
   };
 
