@@ -16,6 +16,7 @@ import { BorderLine, Space } from "./utils";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Score } from "./Score";
 import { BaseContainer } from "../utils";
+import { FinishButton } from "./FinishButton";
 
 type Props = {};
 
@@ -47,13 +48,7 @@ export const ContinuousTest: React.FC<Props> = () => {
         <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
           <TriggerButton state={testState} onInitHandler={onInitHandler} onStartedHandler={onStartedHandler} onDoneHandler={onDoneHandler} />
         </Grid>
-        {testState === 'done' ? (
-          <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
-            <Button variant="outlined" color="error" sx={{width: 100}}>
-              終了する
-            </Button>
-          </Grid>
-        ) : null}
+        <FinishButton state={testState} />
       </Grid>
 
       <Grid container>

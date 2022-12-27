@@ -1,14 +1,11 @@
 import React, { useEffect } from "react";
 import { GuideStorage, UserInfoStorage } from "./database/concepts/LocalStorage";
-import { presets } from "./database/questions";
-import { Check } from "./Scenario/Check";
 import { Guide } from "./Scenario/Guide";
 import { atom, useRecoilState } from "recoil";
-import { TestContainer } from "./Scenario/Test";
 import { ContinuousTest } from "./Scenario/ContinuousTest/ContinuousTest";
 import { Questionnaire } from "./Scenario/Questionnaire";
 
-type RouteState = "guide" | "questionnaire" | "test";
+type RouteState = "guide" | "questionnaire" | "test" | "finish";
 
 export const routeState = atom<RouteState>({
   key: "RouteState", // unique ID (with respect to other atoms/selectors)
@@ -39,6 +36,8 @@ export const Routing = () => {
       //   return <TestContainer />;
       case "test":
         return <ContinuousTest />;
+      case "finish":
+        return <div>finish</div>
     }
   };
 

@@ -1,16 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Modal } from "@mui/material";
 
 import {
   atom,
-  selector,
-  SetterOrUpdater,
   useRecoilState,
-  useRecoilValue,
 } from "recoil";
 import { ComingSoon } from "./AboutConcept/ComingSoon";
 import { conceptMatcher } from "./ConceptMatcher/conceptMatcher";
-import { Concept } from "./PersonalLearningStatus/InstructionalCurriculumMap";
 
 // モーダルの遷移を考慮し、スタック型とする
 type ModalRouteState = {
