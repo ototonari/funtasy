@@ -1,5 +1,6 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/app/index.tsx',
@@ -15,6 +16,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/templates/index.html'
     }),
+    new Dotenv(), // 環境変数 .env の読み込み
   ],
   output: {
     path: __dirname + '/public',

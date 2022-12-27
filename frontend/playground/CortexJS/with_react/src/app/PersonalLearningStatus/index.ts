@@ -12,11 +12,3 @@ export const icmState = atom<Props>({
     icm: null
   },
 });
-
-/**
- * ICMを更新するヘルパー関数
- * Viewで用いる
- */
-export const updateICM = () => {
-  
-}

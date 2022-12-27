@@ -8,3 +8,7 @@ public/index.html
 # IDE
 .alm
 .vscode
+
+# Config
+src/secret
+.env
