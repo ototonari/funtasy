@@ -1,16 +1,16 @@
-import { getAuth, signInAnonymously } from "firebase/auth";
-import { FirebaseApps } from "..";
+// import { getAuth, signInAnonymously } from "firebase/auth";
+// import { FirebaseApps } from "..";
 
-export const authAnonymously = () => {
-  const {auth} = FirebaseApps;
+// export const authAnonymously = () => {
+//   const {auth} = FirebaseApps;
 
-  signInAnonymously(auth)
-    .then(() => {
-      console.log("sign in anonymously.")
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.error("error code: ", errorCode, " error message: ", errorMessage);
-    });
-}
+//   signInAnonymously(auth)
+//     .then(() => {
+//       console.log("sign in anonymously.")
+//     })
+//     .catch((error) => {
+//       const errorCode = error.code;
+//       const errorMessage = error.message;
+//       console.error("error code: ", errorCode, " error message: ", errorMessage);
+//     });
+// }
