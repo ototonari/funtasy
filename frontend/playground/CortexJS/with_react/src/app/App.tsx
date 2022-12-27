@@ -15,7 +15,7 @@ Debug.resetGuide();
 // TestUserScore();
 
 console.log("REACT_APP_FIREBASE_PROJECT_ID", process.env.REACT_APP_FIREBASE_PROJECT_ID);
-console.log("TEST", process.env.TEST);
+console.log("TEST", process.env.REACT_APP_TEST);
 
 export const App = () => {
   useInitialize();
