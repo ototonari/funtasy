@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-console.log(process.env.TEST);
+console.log("TEST", process.env.TEST);
 
 function App() {
   return (
