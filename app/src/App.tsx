@@ -1,28 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Debug } from "./database/concepts/LocalStorage";
+import { authAnonymously } from "./firebase/auth/auth_anon_sign_in";
+import { TestUserScore } from "./firebase/database/user_score_test";
+import { useInitialize } from "./hooks/useInitialize";
+import { MathWithLatex } from "./MathLive/MathWithLatex";
+import { ModalRouting } from "./ModalRouting";
+import { Routing } from "./Routing";
 
+// TODO: デバッグが終了したら削除すること
+Debug.resetICM();
+Debug.resetGuide();
+
+// authAnonymously();
+// TestUserScore();
+
+console.log("REACT_APP_FIREBASE_PROJECT_ID", process.env.REACT_APP_FIREBASE_PROJECT_ID);
 console.log("TEST", process.env.REACT_APP_TEST);
 
-function App() {
+export const App = () => {
+  useInitialize();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Routing />
+      <ModalRouting />
+      {/* <MathWithLatex /> */}
     </div>
   );
-}
-
-export default App;
+};
