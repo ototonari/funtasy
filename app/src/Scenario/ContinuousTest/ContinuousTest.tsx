@@ -17,11 +17,11 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { Score } from "./Score";
 import { BaseContainer } from "../utils";
 import { FinishButton } from "./FinishButton";
+import { useHelperActiveScene } from "../../hooks/useHelperActivityLog";
 
 type Props = {};
 
 export const ContinuousTest: React.FC<Props> = () => {
-
   const [testState, setTestState] = useState<TestStateType>('init');
   const onInitHandler = () => {
     setTestState('started');
@@ -32,6 +32,8 @@ export const ContinuousTest: React.FC<Props> = () => {
   const onDoneHandler = () => {
     setTestState('init');
   }
+  // 利用ログ. state毎の時間を取得する
+  useHelperActiveScene(`test:${testState}`);
 
   return (
     <BaseContainer>

@@ -1,8 +1,9 @@
 import React from "react";
 import { Paper, IconButton } from "@mui/material";
-import {ArrowBackIos, ArrowForwardIos } from '@mui/icons-material';
+import {ArrowBackIos } from '@mui/icons-material';
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
+import { useHelperActiveScene } from "../hooks/useHelperActivityLog";
 
 type Props = {
   children?: React.ReactNode;
@@ -10,6 +11,10 @@ type Props = {
 
 export const Base: React.FC<Props> = ({ children }) => {
   const [modalRoute, setModalRoute] = useRecoilState(modalState);
+
+  // 利用ログ. 閲覧しているコンセプト毎に計測する
+  const conceptId = modalRoute.conceptIds[modalRoute.conceptIds.length - 1];
+  useHelperActiveScene(`concept:${conceptId}`);
 
   const forBack = () => {
     const conceptIds = modalRoute.conceptIds.slice(0, -1);

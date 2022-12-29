@@ -10,10 +10,14 @@ import { useRecoilState } from "recoil";
 import { GuideStorage } from "../database/concepts/LocalStorage";
 import { routeState } from "../Routing";
 import { BaseContainer } from "./utils";
+import { useHelperActiveScene } from "../hooks/useHelperActivityLog";
 
 type Props = {};
 
 export const Guide: React.FC<Props> = () => {
+  // 利用ログ
+  useHelperActiveScene("guide");
+  
   const [, setRoute] = useRecoilState(routeState);
   const setGuideStatus = () => {
     GuideStorage.set(true);

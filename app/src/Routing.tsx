@@ -5,12 +5,13 @@ import { atom, useRecoilState } from "recoil";
 import { ContinuousTest } from "./Scenario/ContinuousTest/ContinuousTest";
 import { Questionnaire } from "./Scenario/Questionnaire";
 import { Finish } from "./Scenario/Finish/Finish";
+import { Initialize } from "./Initialize";
 
-type RouteState = "guide" | "questionnaire" | "test" | "finish";
+type RouteState = "init" | "guide" | "questionnaire" | "test" | "finish";
 
 export const routeState = atom<RouteState>({
   key: "RouteState", // unique ID (with respect to other atoms/selectors)
-  default: "guide", // default value (aka initial value)
+  default: "init", // default value (aka initial value)
 });
 
 export const Routing = () => {
@@ -27,6 +28,8 @@ export const Routing = () => {
 
   const router = (route: RouteState) => {
     switch (route) {
+      case "init":
+        return <Initialize />;
       case "guide":
         return <Guide />;
       case "questionnaire":

@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from "react";
 import {
-  Box,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Grid,
-  Paper,
-  Typography,
 } from "@mui/material";
 import { TestStateType } from ".";
-import { ab } from "../../AboutConcept/utils";
 
 type TriggerButtonProps = {
   state: TestStateType;
@@ -80,10 +75,10 @@ const DoneButtonWithDialog: React.FC<DoneButtonWithDialogProps> = ({
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {ab([
-              "まだ解答を続けたい場合は「解答を続ける」ボタンを押してください。",
-              "※ テストは何度も行うことができます。"
-            ])}
+            まだ解答を続けたい場合は「解答を続ける」ボタンを押してください。
+          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">
+            ※ テストは何度も行うことができます。
           </DialogContentText>
         </DialogContent>
         <DialogActions>
