@@ -17,13 +17,13 @@ export const routeState = atom<RouteState>({
 export const Routing = () => {
   const [route, setRoute] = useRecoilState(routeState);
   useEffect(() => {
-    const hasGuide = GuideStorage.get();
-    const hasInfo = UserInfoStorage.get();
-    if (hasGuide && hasInfo) {
-      setRoute("test");
-    } else if (hasGuide) {
-      setRoute("questionnaire");
-    }
+    // const hasGuide = GuideStorage.get();
+    // const hasInfo = UserInfoStorage.get();
+    // if (hasGuide && hasInfo) {
+    //   setRoute("test");
+    // } else if (hasGuide) {
+    //   setRoute("questionnaire");
+    // }
   }, []);
 
   const router = (route: RouteState) => {
