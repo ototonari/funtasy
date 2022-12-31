@@ -33,12 +33,6 @@ export const UnderstandingGraph: React.FC<Props> = ({ testResultInfo }) => {
     <div
     // style={{ backgroundColor: "rgb(232 232 232 / 45%)" }}
     >
-      {/* {testResultInfo !== undefined ? (
-        <VictoryBar data={data}/>
-      ) : (
-        <Skeleton />
-      )} */}
-
       <VictoryChart
         width={700}
         height={300}
@@ -76,44 +70,9 @@ export const UnderstandingGraph: React.FC<Props> = ({ testResultInfo }) => {
             <VictoryArea
               key={index}
               interpolation="linear"
-              style={
-                {
-                  // data: { fill: "cyan", stroke: "cyan" },
-                }
-              }
               data={data}
             /> 
           )) }
-          {/* <VictoryArea
-            interpolation="natural"
-            style={
-              {
-                // data: { fill: "cyan", stroke: "cyan" },
-              }
-            }
-            data={[
-              { x: 1, y: 20 },
-              // { x: 2, y: 3 },
-              // { x: 3, y: 5 },
-              // { x: 4, y: 4 },
-              // { x: 5, y: 7 },
-            ]}
-          />
-          <VictoryArea
-            interpolation="natural"
-            style={
-              {
-                // data: { fill: "magenta", stroke: "magenta" },
-              }
-            }
-            data={[
-              { x: 1, y: 0 },
-              // { x: 2, y: 2 },
-              // { x: 3, y: 6 },
-              // { x: 4, y: 2 },
-              // { x: 5, y: 6 },
-            ]}
-          /> */}
         </VictoryGroup>
       </VictoryChart>
     </div>

@@ -1,25 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Timer, MenuBook, FactCheck, Check } from "@mui/icons-material";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { BaseContainer } from "../utils";
 import { ab, Text, Title } from "../../AboutConcept/utils";
-import { Space } from "../ContinuousTest/utils";
-import { measuringConceptComprehension, TestResultInfoType, UserScore } from "../../firebase/database/user_score";
+import { BorderLine, Space } from "../ContinuousTest/utils";
+import { TestResultInfoType, UserScore } from "../../firebase/database/user_score";
 import { authState } from "../../firebase/auth";
 import { UnderstandingGraph } from "./UnderstandingGraph";
+import { routeState } from "../../Routing";
+import { useHelperActiveScene } from "../../hooks/useHelperActivityLog";
 
 type Props = {};
 
-export const Finish: React.FC<Props> = ({}) => {
+export const Finish: React.FC<Props> = () => {
   const [{uid},] = useRecoilState(authState);
+  const [, setRoute] = useRecoilState(routeState);
 
   const [testResultInfo, setTestResultInfo] = useState<TestResultInfoType | null | undefined>(undefined);
+
+  const backHandler = () => {
+    setRoute("test");
+  };
+
+  // 利用ログ
+  useHelperActiveScene("result");
 
   useEffect(() => {
     if (testResultInfo === undefined) {
       UserScore.getStandardDeviationWithUserDeviation(uid).then(setTestResultInfo);
-      // UserScore.getStandardDeviationWithUserDeviation(uid).then(setTestResultInfo);
     }
   }, [testResultInfo])
 
@@ -29,9 +37,22 @@ export const Finish: React.FC<Props> = ({}) => {
         <Grid item xs>
           <Typography variant={"h5"}>今回の学習結果</Typography>
         </Grid>
+        <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
+          <Button variant="contained" sx={{ width: 120 }} onClick={backHandler} >
+            再テストする
+          </Button>
+        </Grid>
+        {/* <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
+          <Button variant="contained" sx={{ width: 120 }} >
+            さいごに
+          </Button>
+        </Grid> */}
       </Grid>
+
       <Grid container>
         <Grid item xs>
+          <Space />
+          <BorderLine />
           <Space />
 
           <Text pl={2}>
@@ -54,15 +75,6 @@ export const Finish: React.FC<Props> = ({}) => {
             {testResultInfo !== undefined ? `偏差値 ${testResultInfo.userDeviation}` : ""}
           </Text>
           <Space />
-
-          {/* <Title>得点の推移</Title>
-          <Space />
-          <Text pl={2}>
-            {testResultInfo !== undefined ? testResultInfo.ownScores.map(({score, answers}, index) => (
-              <p key={index} >{`${index+1}回目の得点: ${score.molecule * 10}`}</p>
-            )): null}
-          </Text>
-          <Space /> */}
 
           <Title>理解度の推移</Title>
             <UnderstandingGraph testResultInfo={testResultInfo} />
