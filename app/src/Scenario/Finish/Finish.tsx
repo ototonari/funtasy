@@ -64,14 +64,13 @@ export const Finish: React.FC<Props> = () => {
           <BorderLine />
           <Space />
 
-          <Space />
-
           <ScoreInfo testResultInfo={testResultInfo} />
+          <Space />
+          <BorderLine />
           <Space />
 
           <Title>理解度の推移</Title>
-            <UnderstandingGraph testResultInfo={testResultInfo} />
-          <Space />
+          <UnderstandingGraph testResultInfo={testResultInfo} />
 
           <PracticeProgress />
           <Space />
