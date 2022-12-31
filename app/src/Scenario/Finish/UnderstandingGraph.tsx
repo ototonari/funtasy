@@ -28,11 +28,11 @@ export const UnderstandingGraph: React.FC<Props> = ({ testResultInfo }) => {
     return <Skeleton variant="rectangular" width={800} height={300} />;
   }
 
-  // const graphData = extractData(testResultInfo);
-  const graphData = exampleData([0, 30, 50, 70, 100], [10, 20, 40, 60, 70]);
+  const graphData = extractData(testResultInfo);
+  // const graphData = exampleData([0, 30, 50, 70, 100], [10, 20, 40, 60, 70]);
 
-  // const dataSize = testResultInfo.ownScores.length;
-  const dataSize = 5;
+  const dataSize = testResultInfo.ownScores.length;
+  // const dataSize = 5;
 
   console.log(graphData);
 
