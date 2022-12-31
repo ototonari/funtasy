@@ -1,7 +1,8 @@
+import dayjs from "dayjs";
 import { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { authState } from "../firebase/auth";
-import { SceneName, UserActivity } from "../firebase/database/user_activity";
+import { PracticeLog, SceneName, UserActivity } from "../firebase/database/user_activity";
 import { getTimeStr } from "../utils/datetimeHelper";
 
 export const useHelperActiveScene = (sceneName: SceneName) => {
@@ -20,3 +21,14 @@ export const useHelperActiveScene = (sceneName: SceneName) => {
     };
   });
 };
+
+export const useHelperActivePractice = (conceptId: number, level: number, formula: string, result: boolean) => {
+  const { uid, state } = useRecoilValue(authState);
+
+  useEffect(() => {
+    if (state === "init") {
+      throw new Error("useHelperActiveScene: invalid call.");
+    }
+    UserActivity.upsertPractice(uid, conceptId, level, result, formula)
+  });
+}
