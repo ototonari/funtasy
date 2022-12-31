@@ -12,7 +12,28 @@ export const ScoreInfo: React.FC<Props> = ({ testResultInfo }) => {
   if (testResultInfo == null) {
     return (
       <>
-        <Skeleton />
+      <Skeleton variant="rounded" width={150} height={25} />
+      <Text pl={1}>
+        <Skeleton  width={100} height={25} />
+      </Text>
+      <Space />
+
+      <Text pl={2}>
+        <Skeleton variant="rounded" width={200} height={20} />
+      </Text>
+
+      <Text pl={2}>
+        <Skeleton variant="rounded" width={200} height={20} />
+
+      </Text>
+      <Text pl={2}>
+        <Skeleton variant="rounded" width={200} height={20} />
+
+      </Text>
+      <Space />
+      <Text pl={2}>
+        <Skeleton variant="rounded" width={200} height={20} />
+      </Text>
       </>
     );
   }
@@ -31,15 +52,16 @@ export const ScoreInfo: React.FC<Props> = ({ testResultInfo }) => {
 
       <Text pl={2}>
         {`あなたの最高得点: ${testResultInfo.ownBestScore.molecule * 10}`}
+
       </Text>
       <Text pl={2}>
         {`あなたの偏差値 ${testResultInfo.userDeviation}`}
+
       </Text>
       <Space />
       <Text pl={2}>
         {makeGoodWord(testResultInfo.ownBestScore.molecule)}
       </Text>
-
     </>
   );
 };

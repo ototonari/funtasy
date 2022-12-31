@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Space } from "../ContinuousTest/utils";
-import { Title, Text } from "../../AboutConcept/utils";
+import { Title, Text, ab } from "../../AboutConcept/utils";
 import { Skeleton, Typography } from "@mui/material";
 import {
   UserActivity,
@@ -29,8 +29,11 @@ export const PracticeProgress: React.FC<Props> = () => {
     return (
       <>
         <Skeleton variant="rounded" width={200} height={25} />
-        <Skeleton variant="rounded" width={130} height={20} />
-        <Skeleton variant="rounded" width={130} height={20} />
+        <Space />
+        <Text pl={2}>
+          <Skeleton width={130} height={20} />
+          <Skeleton width={130} height={20} />
+        </Text>
       </>
     );
   }

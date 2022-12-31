@@ -74,14 +74,14 @@ const FinishButtonWithDialog: React.FC<FinishButtonWithDialogProps> = ({
         <DialogTitle id="alert-dialog-title">テストを終了します</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            注意: 当アプリは理解度テストを繰り返し行うことを目的としています。
+            テストを終了して最後のページに進みますか？
           </DialogContentText>
           <DialogContentText id="alert-dialog-description">
-            終了画面では、あなたの学習成果を見ることができます。
+            最後のページではあなたの学習成果を見ることができます。
           </DialogContentText>
-          <DialogContentText id="alert-dialog-description">
-            テストを終了します。よろしいでしょうか。
-          </DialogContentText>
+          {/* <DialogContentText id="alert-dialog-description">
+            ※ テストは何度も受け直すことが可能です。
+          </DialogContentText> */}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>テストを続ける</Button>
