@@ -16,10 +16,14 @@ import { authState } from "../firebase/auth";
 import { UserInfo, UserInfoType } from "../firebase/database/user_info";
 import { routeState } from "../Routing";
 import { BaseContainer } from "./utils";
+import { useHelperActiveScene } from "../hooks/useHelperActivityLog";
 
 type Props = {};
 
 export const Questionnaire: React.FC<Props> = () => {
+  // 利用ログ
+  useHelperActiveScene("questionnaire");
+
   const [ready, setReady] = useState(false);
 
   const [, setRoute] = useRecoilState(routeState);
@@ -86,12 +90,12 @@ const QuestionnaireForm: React.FC<{ handleReady: (v: boolean) => void }> = ({han
   useEffect(() => {
     const user = new User(genderValue, ageValue);
     if (authnState === "updated" && user.isValid()) {
-      console.log("valid user.");
+      console.log("QuestionnaireForm: valid user.");
       UserInfo.set(uid, user.toUserInfoParam());
 
       handleReady(true);
     } else {
-      console.log("invalid user.");
+      console.log("QuestionnaireForm: invalid user.");
     }
   }, [genderValue, ageValue])
 

@@ -10,29 +10,33 @@ import { ICMRepository } from "../PersonalLearningStatus/InstructionalCurriculum
  * アプリ初期化時に呼ばれる
  */
 export const useInitialize = () => {
-  const [, setIcmState] = useRecoilState(icmState);
-  const [, setAuthState] = useRecoilState(authState);
+  const [{icm}, setIcmState] = useRecoilState(icmState);
+  const [{uid, state}, setAuthState] = useRecoilState(authState);
 
   useEffect(() => {
-    // Debug.resetICM();
-    // Debug.resetGuide();
+    // Debug.showStatus();
 
-    // ICMを利用するための初期化
-    // localStorageから状態の復元
-    const icm = ICMRepository.load();
-    setIcmState({ icm });
+    if (icm === null) {
+      // ICMの初期化. localStorageから状態の復元.
+      console.log("start: icm initialize");
+      const icm = ICMRepository.load();
+      setIcmState({ icm });  
+      console.log("end: icm initialize");
+    }
+  });
 
-    Debug.showStatus();
-
+  useEffect(() => {
+    console.log("start: auth initialize");
     const authUnsubscribe = SetAuthStateListener((uid) => {
       setAuthState({
         state: 'updated',
         uid: uid,
       })
+      console.log("end: auth initialize");
     });
 
     return () => {
       authUnsubscribe();
     }
-  }, []);
+  })
 };

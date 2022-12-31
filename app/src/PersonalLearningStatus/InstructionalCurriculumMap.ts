@@ -195,7 +195,7 @@ export class InstructionalCurriculumMap {
   // コンセプトとレベルから必要な前提条件を取得する
   getPrerequisiteConceptByIdLevelAndStatus = (id: ConceptId, level: Level): Prerequisites[] => {
     const conceptLevels = this.getPrerequisitesByIdLevel(id, level);
-    console.log("conceptLevels", conceptLevels)
+    // console.log("conceptLevels", conceptLevels);
     return this.filterConceptByStatus(conceptLevels);
   }
 

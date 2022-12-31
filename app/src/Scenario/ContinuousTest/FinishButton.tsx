@@ -10,7 +10,6 @@ import {
 import React from "react";
 import { useRecoilState } from "recoil";
 import { TestStateType } from ".";
-import { ab } from "../../AboutConcept/utils";
 import { routeState } from "../../Routing";
 
 type FinishButtonProps = {
@@ -75,11 +74,13 @@ const FinishButtonWithDialog: React.FC<FinishButtonWithDialogProps> = ({
         <DialogTitle id="alert-dialog-title">テストを終了します</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            {ab([
-              "注意: 当アプリは理解度テストを繰り返し行うことを目的としています。",
-              "終了画面では、あなたの学習成果を見ることができます。",
-              "テストを終了します。よろしいでしょうか。",
-            ])}
+            注意: 当アプリは理解度テストを繰り返し行うことを目的としています。
+          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">
+            終了画面では、あなたの学習成果を見ることができます。
+          </DialogContentText>
+          <DialogContentText id="alert-dialog-description">
+            テストを終了します。よろしいでしょうか。
           </DialogContentText>
         </DialogContent>
         <DialogActions>
