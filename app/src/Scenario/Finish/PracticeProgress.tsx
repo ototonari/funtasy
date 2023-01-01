@@ -47,7 +47,7 @@ export const PracticeProgress: React.FC<Props> = () => {
 };
 
 const ResultView: React.FC<{ data: UserActivityType["practiceLog"] }> = ({
-  data,
+  data = [],
 }) => {
   const totalP4practiceCount = P4.all.length;
   const totalP39PracticeCount = P39.all.length;
