@@ -15,7 +15,7 @@ import { Routing } from "./Routing";
 //   console.log(info);
 // })
 
-TestPracticeLogProgress();
+// TestPracticeLogProgress();
 
 export const App = () => {
 
