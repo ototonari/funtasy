@@ -5,7 +5,6 @@ import {
   Grid,
   Button
 } from "@mui/material";
-import DeleteIcon from '@mui/icons-material/Delete';
 import { Base } from "./Base";
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";

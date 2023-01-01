@@ -1,4 +1,5 @@
-import { Grid, Typography, Skeleton } from "@mui/material";
+import { Grid, Typography, Skeleton, IconButton } from "@mui/material";
+import { Warning } from '@mui/icons-material';
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { Space, Text } from "./AboutConcept/utils";
@@ -8,6 +9,7 @@ import { icmState } from "./PersonalLearningStatus";
 import { ICMRepository } from "./PersonalLearningStatus/InstructionalCurriculumMap";
 import { routeState } from "./Routing";
 import { BaseContainer } from "./Scenario/utils";
+import { isChrome } from "./utils/browserDetect";
 
 export const Initialize: React.FC<{}> = () => {
   const [{icm}, setIcmState] = useRecoilState(icmState);
@@ -17,6 +19,7 @@ export const Initialize: React.FC<{}> = () => {
     setRoute("guide");
   };
 
+  const isChromeBrowser = isChrome();
 
   useEffect(() => {
       // ICMの初期化. localStorageから状態の復元.
@@ -29,6 +32,8 @@ export const Initialize: React.FC<{}> = () => {
   }, []);
 
   useEffect(() => {
+    if (!isChromeBrowser) return;
+
     console.log("start: auth initialize");
 
     const authUnsubscribe = SetAuthStateListener((uid) => {
@@ -46,17 +51,39 @@ export const Initialize: React.FC<{}> = () => {
   }, [])
 
   useEffect(() => {
+    if (!isChromeBrowser) return;
+
     if (icm !== null && state === "updated") {
       console.log("done: all initialize");
       setGuideStatus();
     }
 
   }, [icm, state])
+
+  if (!isChromeBrowser) {
+    return <WarningComponent />
+  }
   
   return (
     <SkeletonCompoent />
   );
 };
+
+const WarningComponent = () => (
+  <BaseContainer>
+      <Grid container>
+        <Grid item xs style={{display: "flex", alignItems: "center" }}>
+        <Warning color="warning" />
+        <Typography variant="body2" paddingLeft={1} >お使いのブラウザではご利用いただけません。</Typography>
+        </Grid>
+      </Grid>
+      <Grid container marginTop={1}>
+        <Grid item xs style={{display: "flex", alignItems: "center" }}>
+        <Typography variant="body2" style={{ padding: 10, backgroundColor: "rgb(235 235 235)", borderRadius: 5 }} >お手数ですが Google Chrome ブラウザでアクセスしてください。</Typography>
+        </Grid>
+      </Grid>
+  </BaseContainer>
+)
 
 const SkeletonCompoent = () => (
   <BaseContainer>
