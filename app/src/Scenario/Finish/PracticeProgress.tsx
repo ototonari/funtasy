@@ -47,15 +47,17 @@ export const PracticeProgress: React.FC<Props> = () => {
 };
 
 const ResultView: React.FC<{ data: UserActivityType["practiceLog"] }> = ({
-  data = [],
+  data,
 }) => {
+  const log = data !== null ? data : [];
+
   const totalP4practiceCount = P4.all.length;
   const totalP39PracticeCount = P39.all.length;
   // console.log("total: ", totalP4practiceCount, totalP39PracticeCount);
   let p4OkCount = 0;
   let p39OkCount = 0;
 
-  data.forEach((l) => {
+  log.forEach((l) => {
     if (l.conceptId === 4 && l.result) {
       p4OkCount += 1;
     } else if (l.conceptId === 39 && l.result) {
