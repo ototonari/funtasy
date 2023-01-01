@@ -9,6 +9,8 @@ import { authState } from "../../firebase/auth";
 import { UnderstandingGraph } from "./UnderstandingGraph";
 import { routeState } from "../../Routing";
 import { useHelperActiveScene } from "../../hooks/useHelperActivityLog";
+import { PracticeProgress } from "./PracticeProgress";
+import { ScoreInfo } from "./ScoreInfo";
 
 type Props = {};
 
@@ -52,9 +54,6 @@ export const Finish: React.FC<Props> = () => {
       <Grid container>
         <Grid item xs>
           <Space />
-          <BorderLine />
-          <Space />
-
           <Text pl={2}>
           {ab([
               "お疲れ様でした。",
@@ -62,28 +61,18 @@ export const Finish: React.FC<Props> = () => {
             ])}
           </Text>
           <Space />
-
-          <Title>理解度テスト (1問を10点とする)</Title>
+          <BorderLine />
           <Space />
-          <Text pl={2}>
-            {testResultInfo !== undefined ? `最高得点: ${testResultInfo.ownBestScore.molecule * 10}` : ""}
-          </Text>
-          <Text pl={2}>
-            {testResultInfo !== undefined ? `平均点: ${testResultInfo.allTestAvarage * 10}` : ""}
-          </Text>
-          <Text pl={2}>
-            {testResultInfo !== undefined ? `偏差値 ${testResultInfo.userDeviation}` : ""}
-          </Text>
+
+          <ScoreInfo testResultInfo={testResultInfo} />
+          <Space />
+          <BorderLine />
           <Space />
 
           <Title>理解度の推移</Title>
-            <UnderstandingGraph testResultInfo={testResultInfo} />
-          <Space />
+          <UnderstandingGraph testResultInfo={testResultInfo} />
 
-          {/* <Title>練習問題のやりこみ度</Title>
-          <Space />
-          <Text pl={2}>
-          </Text> */}
+          <PracticeProgress />
           <Space />
         </Grid>
       </Grid>

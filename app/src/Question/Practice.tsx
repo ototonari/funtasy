@@ -6,6 +6,9 @@ import { Check, Lightbulb, HelpOutline } from "@mui/icons-material";
 import { QuestionType } from "./common";
 import { MathInputInline } from "../MathLive/MathInputInline";
 import { MI } from "../MathLive/MathInline";
+import { UserActivity } from "../firebase/database/user_activity";
+import { authState } from "../firebase/auth";
+import { useRecoilValue } from "recoil";
 
 type Props = QuestionType & {
   evaluator?: Evaluator;
@@ -16,8 +19,10 @@ export const Practice: React.FC<Props> = ({
   answers,
   answerPlaceholder,
   conceptId,
+  level,
   evaluator,
 }) => {
+  const { uid } = useRecoilValue(authState);
   const [results, setResults] = useState(answers.map(() => false));
   const [userAnswers, setUserAnswers] = useState(answers.map(() => ""));
   const [isOK, setOK] = useState(false);
@@ -40,8 +45,12 @@ export const Practice: React.FC<Props> = ({
       });
     }
     console.log("results", results);
+    const _isOK = results.every((r) => r);
     setResults(results);
-    setOK(results.every((r) => r));
+    setOK(_isOK);
+
+    // 利用ログの計測
+    UserActivity.upsertPractice(uid, conceptId, level, _isOK, expression);
   };
 
   return (

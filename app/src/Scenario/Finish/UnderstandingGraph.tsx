@@ -25,7 +25,7 @@ type Props = {
 
 export const UnderstandingGraph: React.FC<Props> = ({ testResultInfo }) => {
   if (testResultInfo === undefined || testResultInfo === null) {
-    return <Skeleton variant="rectangular" width={800} height={300} />;
+    return <Skeleton variant="rectangular" width={800} height={350} />;
   }
 
   const graphData = extractData(testResultInfo);

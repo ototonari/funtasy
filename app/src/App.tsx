@@ -1,5 +1,6 @@
 import React from "react";
 import { Debug } from "./database/concepts/LocalStorage";
+import { TestPracticeLog, TestPracticeLogProgress } from "./firebase/database/user_activity_test";
 import { UserScore } from "./firebase/database/user_score";
 import { TestUserScore } from "./firebase/database/user_score_test";
 import { MathWithLatex } from "./MathLive/MathWithLatex";
@@ -13,6 +14,8 @@ import { Routing } from "./Routing";
 //   const info = await UserScore.getStandardDeviationWithUserDeviation("test-1");
 //   console.log(info);
 // })
+
+// TestPracticeLogProgress();
 
 export const App = () => {
 
