@@ -6,8 +6,9 @@ import { ContinuousTest } from "./Scenario/ContinuousTest/ContinuousTest";
 import { Questionnaire } from "./Scenario/Questionnaire";
 import { Finish } from "./Scenario/Finish/Finish";
 import { Initialize } from "./Initialize";
+import { Tutorial } from "./Scenario/Tutorial/Tutorial";
 
-type RouteState = "init" | "guide" | "questionnaire" | "test" | "finish";
+type RouteState = "init" | "guide" | "questionnaire" | "tutorial" | "test" | "finish";
 
 export const routeState = atom<RouteState>({
   key: "RouteState", // unique ID (with respect to other atoms/selectors)
@@ -34,6 +35,8 @@ export const Routing = () => {
         return <Guide />;
       case "questionnaire":
         return <Questionnaire />;
+      case "tutorial":
+        return <Tutorial />;
       // case "check":
       //   return <Check questions={presets} />;
       // case "test":

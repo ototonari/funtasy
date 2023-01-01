@@ -24,6 +24,12 @@ export const App = () => {
       <Routing />
       <ModalRouting />
       {/* <MathWithLatex /> */}
+      <VirtualKeyboardSpace />
     </div>
   );
 };
+
+// 仮想キーボードにより画面の縦方向に強制的にスペースが増され、消える時にスクロールダウンするのを防ぐためのスペーサー
+const VirtualKeyboardSpace = () => (
+  <div style={{ height: 300}} />
+)

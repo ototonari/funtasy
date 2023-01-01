@@ -42,7 +42,7 @@ export function TestContainer({ state }: Props) {
   }, [state]);
 
   if (state === "init") {
-    return <Space />;
+    return <Description />;
   } else {
     return (
       <div>
@@ -128,3 +128,9 @@ export function Test({ testLabel, questions, isFeedback }: TestProps) {
     </Box>
   );
 }
+
+const Description: React.FC = () => (
+  <Typography variant="subtitle1" >
+    高校数学1の因数分解と2次方程式の理解度を確認してみましょう。
+  </Typography>
+)

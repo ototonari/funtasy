@@ -3,7 +3,7 @@ import { MathReadonly } from "../MathLive/MathReadonly";
 import { MathInput } from "../MathLive/MathInput";
 import { ce } from "../ComputeEngine";
 import { Grid, IconButton } from "@mui/material";
-import { Check, WarningAmber, Info, Lightbulb } from "@mui/icons-material";
+import { Check, Lightbulb } from "@mui/icons-material";
 import { QuestionType } from "./common";
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
