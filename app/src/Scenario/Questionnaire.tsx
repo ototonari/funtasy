@@ -29,7 +29,7 @@ export const Questionnaire: React.FC<Props> = () => {
   const [, setRoute] = useRecoilState(routeState);
   const setGuideStatus = () => {
     UserInfoStorage.set(true);
-    setRoute("test");
+    setRoute("tutorial");
   };
 
   return (
