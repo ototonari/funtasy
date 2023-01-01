@@ -6,14 +6,13 @@
  * - 終了すると、採点と振り返りが行える状態となる。学習者は再度挑戦するか、終了するかを選べる
  * - 終了した場合は、最後の画面に遷移する。
  */
-import React, { useEffect, useState } from "react";
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import React, { useState } from "react";
+import { Grid, Typography } from "@mui/material";
 import { TriggerButton } from "./TriggerButton";
-import { ContinuousTestState, TestStateType } from ".";
+import { TestStateType } from ".";
 import { CountDownTimer } from "./CountDownTimer";
 import { TestContainer } from "./TestContainer";
 import { BorderLine, Space } from "./utils";
-import { useRecoilState, useRecoilValue } from "recoil";
 import { Score } from "./Score";
 import { BaseContainer } from "../utils";
 import { FinishButton } from "./FinishButton";
