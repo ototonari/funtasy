@@ -1,6 +1,6 @@
 import React from "react";
 import { Paper, IconButton } from "@mui/material";
-import {ArrowBackIos } from '@mui/icons-material';
+import { ArrowBackIos } from '@mui/icons-material';
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
 import { useHelperActiveScene } from "../hooks/useHelperActivityLog";

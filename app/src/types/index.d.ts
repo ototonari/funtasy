@@ -13,3 +13,7 @@ declare namespace NodeJS {
     REACT_APP_TEST: string
   }
 }
+
+declare interface Window {
+  chrome?: any;
+}
