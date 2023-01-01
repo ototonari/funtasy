@@ -11,6 +11,7 @@ import { routeState } from "../../Routing";
 import { useHelperActiveScene } from "../../hooks/useHelperActivityLog";
 import { PracticeProgress } from "./PracticeProgress";
 import { ScoreInfo } from "./ScoreInfo";
+import { SurveyButton } from "./SurveyButton";
 
 type Props = {};
 
@@ -40,15 +41,13 @@ export const Finish: React.FC<Props> = () => {
           <Typography variant={"h5"}>今回の学習結果</Typography>
         </Grid>
         <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
-          <Button variant="contained" sx={{ width: 120 }} onClick={backHandler} >
+          <Button variant="outlined" sx={{ width: 120 }} onClick={backHandler} >
             再テストする
           </Button>
         </Grid>
-        {/* <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
-          <Button variant="contained" sx={{ width: 120 }} >
-            さいごに
-          </Button>
-        </Grid> */}
+        <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
+          <SurveyButton />
+        </Grid>
       </Grid>
 
       <Grid container>
