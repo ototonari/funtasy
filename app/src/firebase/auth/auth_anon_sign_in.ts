@@ -4,7 +4,7 @@ import { FirebaseApps } from "..";
 export const authAnonymously = () => {
   const {auth} = FirebaseApps;
 
-  signInAnonymously(auth)
+  return signInAnonymously(auth)
     .then(() => {
       console.log("sign in anonymously.")
     })
