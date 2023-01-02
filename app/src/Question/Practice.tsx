@@ -5,6 +5,7 @@ import { Grid, IconButton, Popover, Typography } from "@mui/material";
 import { Check, Lightbulb, HelpOutline } from "@mui/icons-material";
 import { QuestionType } from "./common";
 import { MathInputInline } from "../MathLive/MathInputInline";
+import { MathInput } from "../MathLive/MathInput";
 import { MI } from "../MathLive/MathInline";
 import { UserActivity } from "../firebase/database/user_activity";
 import { authState } from "../firebase/auth";
@@ -63,7 +64,7 @@ export const Practice: React.FC<Props> = ({
       </Grid>
       {answers.map((_, i) => (
         <Grid item xs key={i} sx={{ textAlign: "center" }}>
-          <MathInputInline onChange={setUserAnswer(i)} />
+          <MathInput onChange={setUserAnswer(i)} />
         </Grid>
       ))}
       <Grid item xs={1}>

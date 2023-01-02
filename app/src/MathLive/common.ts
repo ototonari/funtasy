@@ -9,6 +9,7 @@ export const createMfeElement = (formula: string): MathfieldElement => {
   });
   mfe.setAttribute("style", innerStyle);
   mfe.innerText = formula;
+  document.body.style.setProperty("--keyboard-zindex", "3000");
   return mfe;
 };
 

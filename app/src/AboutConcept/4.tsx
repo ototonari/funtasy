@@ -25,6 +25,7 @@ import { icmState } from "../PersonalLearningStatus";
 import cross_wall_calc_img from "../assets/cross_wall_calc.png"
 import ex_cross_wall_calc_1_img from "../assets/ex_cross_wall_calc_1.png"
 import ex_cross_wall_calc_2_img from "../assets/ex_cross_wall_calc_2.png"
+import { VirtualKeyboardSpace } from "../MathLive/utils";
 
 const ConceptId = 4;
 
@@ -51,7 +52,7 @@ export const About4: React.FC = () => {
               {/* <Level3 /> */}
 
               {levelMatcher(currentConceptLevel)}
-
+              <VirtualKeyboardSpace height={200} />
             </ScrollBoxOnModal>
           </Grid>
 
