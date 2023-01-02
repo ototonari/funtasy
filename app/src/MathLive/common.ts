@@ -6,9 +6,11 @@ export const createMfeElement = (formula: string): MathfieldElement => {
   mfe.plonkSound = null;
   mfe.setOptions({
     virtualKeyboardMode: 'onfocus',
+    virtualKeyboards: "numeric functions"
   });
   mfe.setAttribute("style", innerStyle);
   mfe.innerText = formula;
+  document.body.style.setProperty("--keyboard-zindex", "3000");
   return mfe;
 };
 

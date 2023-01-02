@@ -7,6 +7,7 @@ import {
 } from "recoil";
 import { ComingSoon } from "./AboutConcept/ComingSoon";
 import { conceptMatcher } from "./ConceptMatcher/conceptMatcher";
+import { VirtualKeyboardSpace } from "./MathLive/utils";
 
 // モーダルの遷移を考慮し、スタック型とする
 type ModalRouteState = {
@@ -44,7 +45,9 @@ export const ModalRouting = () => {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <div>{router(modalRoute)}</div>
+      <div>
+        {router(modalRoute)}
+      </div>
     </Modal>
   );
 };

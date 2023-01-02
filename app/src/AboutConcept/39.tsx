@@ -28,6 +28,7 @@ import { Practice } from "../Question/Practice";
 import { P39 } from "../database/questions/39";
 import { unresolveConcepts } from "../ConceptMatcher";
 import { icmState } from "../PersonalLearningStatus";
+import { VirtualKeyboardSpace } from "../MathLive/utils";
 
 export const About39: React.FC = () => {
   const { icm } = useRecoilValue(icmState);
@@ -60,6 +61,7 @@ export const About39: React.FC = () => {
               </Point>
               <Space />
               {levelMatcher(currentConceptLevel)}
+              <VirtualKeyboardSpace height={200} />
             </ScrollBoxOnModal>
           </Grid>
           <Grid item xs>

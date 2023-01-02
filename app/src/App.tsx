@@ -9,6 +9,7 @@ import { ModalRouting } from "./ModalRouting";
 import { Routing } from "./Routing";
 import { BaseContainer } from "./Scenario/utils";
 import { validBrowser } from "./utils/browserDetect";
+import { VirtualKeyboardSpace } from "./MathLive/utils";
 
 // TODO: デバッグが終了したら削除すること
 // Debug.resetICM();
@@ -36,11 +37,6 @@ export const App = () => {
     </div>
   );
 };
-
-// 仮想キーボードにより画面の縦方向に強制的にスペースが増され、消える時にスクロールダウンするのを防ぐためのスペーサー
-const VirtualKeyboardSpace = () => (
-  <div style={{ height: 300}} />
-)
 
 const WarningComponent = () => (
   <BaseContainer>
