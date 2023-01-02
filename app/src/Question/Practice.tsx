@@ -55,7 +55,7 @@ export const Practice: React.FC<Props> = ({
 
   return (
     <Grid container spacing={0.5} alignItems="center">
-      <Grid item xs={4}>
+      <Grid item xs={5}>
         <MathReadonly formula={expression} />
       </Grid>
       <Grid item xs={0.5} style={{display: "flex", justifyContent: "flex-end" }} >
