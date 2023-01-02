@@ -20,7 +20,7 @@ export function TestContainer({ state }: Props) {
   const [continuousTestState, setContinuousTestState] =
     useRecoilState(ContinuousTestState);
   const { uid, state: authnState } = useRecoilValue(authState);
-  const [questions, setQuestions] = useState([P4.random, P39.random]);
+  const [questions, setQuestions] = useState([P4.randomFunc(), P39.randomFunc()]);
   const [p4, p39] = questions;
   const isFeedback = state === "done" ? true : false;
   // console.log("result: ", continuousTestState.result);

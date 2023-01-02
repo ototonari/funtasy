@@ -54,12 +54,14 @@ export const Practice: React.FC<Props> = ({
   };
 
   return (
-    <Grid container spacing={2} alignItems="center">
+    <Grid container spacing={0.5} alignItems="center">
       <Grid item xs={5}>
         <MathReadonly formula={expression} />
       </Grid>
-      <Grid item xs={1}>
-        {answerPlaceholder ? answerPlaceholder : null}
+      <Grid item xs={0.5} style={{display: "flex", justifyContent: "flex-end" }} >
+        {answerPlaceholder ? (
+          <MI f={answerPlaceholder} />
+        ) : null}
       </Grid>
       {answers.map((_, i) => (
         <Grid item xs key={i} sx={{ textAlign: "center" }}>
