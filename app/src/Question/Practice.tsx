@@ -4,7 +4,6 @@ import { ce, Evaluator, isEqual } from "../ComputeEngine";
 import { Grid, IconButton, Popover, Typography } from "@mui/material";
 import { Check, Lightbulb, HelpOutline } from "@mui/icons-material";
 import { QuestionType } from "./common";
-import { MathInputInline } from "../MathLive/MathInputInline";
 import { MathInput } from "../MathLive/MathInput";
 import { MI } from "../MathLive/MathInline";
 import { UserActivity } from "../firebase/database/user_activity";

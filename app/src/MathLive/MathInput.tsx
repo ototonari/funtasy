@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Base } from "./Base";
-import { createMfeElement, createMfeWithoutKeyboardElement } from "./common";
+import { createMfeElement } from "./common";
 
 type Props = {
   formula?: string;
