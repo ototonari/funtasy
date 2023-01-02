@@ -1,3 +1,4 @@
+import { getRandomQuestionFromQsByLevel } from ".";
 import { QuestionType } from "../../Question/common";
 
 const ConceptId = 39
@@ -8,7 +9,7 @@ export enum P39Levels {
   "解の公式2",
 }
 
-export const p39 : QuestionType[] = [
+const p39 : QuestionType[] = [
   {
     conceptId: ConceptId,
     level: P39Levels.因数分解を使う解き方,
@@ -161,20 +162,11 @@ const all: QuestionType[] = [
 ]
 
 const random = (): QuestionType[] => {
-  const rNum = (max: number) => Math.floor(Math.random() * max);
-  const _l1 = rNum(level1.length - 1);
-  const _l2 = rNum(level2.length - 1);
-  const _l3 = rNum(level3.length - 1);
-  const selection: QuestionType[] = [
-    level1[_l1],
-    level1[_l1+1],
-    level2[_l2],
-    level2[_l2+1],
-    level3[_l3],
-    // level3[_l3+1],
-  ];
-
-  return selection;
+  return [
+    ...getRandomQuestionFromQsByLevel(level1, 1, 2),
+    ...getRandomQuestionFromQsByLevel(level2, 2, 2),
+    ...getRandomQuestionFromQsByLevel(level3, 3, 1),
+  ]
 }
 
 export const P39 = {
@@ -183,7 +175,6 @@ export const P39 = {
   level2,
   level3,
   all,
-  random: random(),
   randomFunc: random,
 }
 

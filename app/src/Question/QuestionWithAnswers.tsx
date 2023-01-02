@@ -60,30 +60,15 @@ export const QuestionWithAnswers: React.FC<Props> = ({
         <MathReadonly formula={expression} />
       </Grid>
       <Grid item xs={0.5} style={{display: "flex", justifyContent: "flex-end" }} >
-          {answerPlaceholder ? (
-            <MI f={answerPlaceholder} />
-          ) : null}
+        {answerPlaceholder ? (
+          <MI f={answerPlaceholder} />
+        ) : null}
+      </Grid>
+      {answers.map((a, i) => (
+        <Grid item xs key={i}>
+          <MathInput onChange={setUserAnswer(i)} />
         </Grid>
-      {answers.map((_, i) => {
-        if (i === answers.length -1) {
-          return (
-            <Grid item xs key={i}>
-              <MathInput onChange={setUserAnswer(i)} />
-            </Grid>
-          )
-        } else {
-          return (
-            <>
-              <Grid item xs key={i}>
-                <MathInput onChange={setUserAnswer(i)} />
-              </Grid>
-              <Grid item xs={0.3} key={i}>
-                <MI f=",　" />
-              </Grid>
-            </>
-          )
-        }
-      })}
+      ))}
       <Grid item xs={1}>
         {
           feedback ? (

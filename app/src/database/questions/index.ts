@@ -1,5 +1,5 @@
 import { QuestionType } from "../../Question/common";
-import { P39, p39 } from "./39";
+import { P39 } from "./39";
 import { P4 } from "./4";
 
 
@@ -42,7 +42,6 @@ export const presets : QuestionType[] = [
     answers: ["-2\\sqrt{6}", "-2-\\sqrt{6}"],
     answerPlaceholder: "x=",
   },
-  p39[4],
   // {
   //   conceptId:39,
   //   level: 0,
@@ -89,28 +88,19 @@ const specificLevel = (id: number, level: number): QuestionType[] => {
   }
 }
 
-const random = (id: number): QuestionType[] => {
-  const rNum = (max: number) => Math.floor(Math.random() * max);
-  const qs = all(id);
-  const count = 6; // 十分にランダムなレベルを選出するため
-  const max = qs.length;
-  const selectSet = new Set<number>();
-  const selection: QuestionType[] = []
+export const getRandomQuestionFromQsByLevel = (question: QuestionType[], level: number, count: number): QuestionType[] => {
+  const selectedLevel = question.filter((q) => q.level === level);
+  const questionSize = selectedLevel.length;
+  if (count > questionSize) {
+    throw new Error(`invalid count size. must be less than or equal to the size. size: ${questionSize}`);
+  }
+  const selectExpression = new Set<string>();
 
-  while (selectSet.size < count) {
-    selectSet.add(rNum(max));
+  while (selectExpression.size < count) {
+    const r = Math.floor(Math.random() * questionSize)
+    // console.log("questionSize_r: ",questionSize, r);
+    selectExpression.add(selectedLevel[r].expression);
   }
 
-  console.log(selectSet);
-  
-  selectSet.forEach((i) => selection.push(qs[i]));
-
-  return selection.sort((a, b) => a.level > b.level ? 1 : -1);
-}
-
-// 出題時に特定のコンセプト別にするので、ここでは特定コンセプトの選択の仕方を与える。
-export const QuestionPicker = {
-  all,
-  specificLevel,
-  random,
+  return selectedLevel.filter((q) => selectExpression.has(q.expression));
 }

@@ -1,3 +1,4 @@
+import { getRandomQuestionFromQsByLevel } from ".";
 import { QuestionType } from "../../Question/common";
 
 // 因数分解
@@ -10,7 +11,7 @@ export enum P4Levels {
   "応用",
 }
 
-export const p4:  QuestionType[] = [
+const p4:  QuestionType[] = [
   {
     conceptId: ConceptId,
     level: P4Levels.共通因数による因数分解,
@@ -298,23 +299,12 @@ const level3 = all.filter((p) => p.level === P4Levels.因数分解の公式2);
 const level4 = all.filter((p) => p.level === P4Levels.応用);
 
 const random = (): QuestionType[] => {
-  const rNum = (max: number) => Math.floor(Math.random() * max);
-  const _l1 = rNum(level1.length - 1);
-  const _l2 = rNum(level2.length - 1);
-  const _l3 = rNum(level3.length - 1);
-  const _l4 = rNum(level4.length - 1);
-  const selection: QuestionType[] = [
-    level1[_l1],
-    level1[_l1+1],
-    level2[_l2],
-    // level2[_l2+1],
-    level3[_l3],
-    // level3[_l3+1],
-    level4[_l4],
-    // level4[_l4+1],
-  ];
-
-  return selection;
+  return [
+    ...getRandomQuestionFromQsByLevel(level1, 1, 2),
+    ...getRandomQuestionFromQsByLevel(level2, 2, 1),
+    ...getRandomQuestionFromQsByLevel(level3, 3, 1),
+    ...getRandomQuestionFromQsByLevel(level4, 4, 1),
+  ]
 }
 
 export const P4 = {
@@ -330,6 +320,6 @@ export const P4 = {
   ex20,
   ex21,
   all,
-  random: random(),
+  // random: random(),
   randomFunc: random,
 }
