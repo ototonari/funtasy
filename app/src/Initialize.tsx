@@ -1,4 +1,4 @@
-import { Grid, Typography, Skeleton, IconButton } from "@mui/material";
+import { Grid, Typography, Skeleton } from "@mui/material";
 import { Warning } from '@mui/icons-material';
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
@@ -9,7 +9,7 @@ import { icmState } from "./PersonalLearningStatus";
 import { ICMRepository } from "./PersonalLearningStatus/InstructionalCurriculumMap";
 import { routeState } from "./Routing";
 import { BaseContainer } from "./Scenario/utils";
-import { isChrome } from "./utils/browserDetect";
+import { validBrowser } from "./utils/browserDetect";
 
 export const Initialize: React.FC<{}> = () => {
   const [{icm}, setIcmState] = useRecoilState(icmState);
@@ -19,7 +19,7 @@ export const Initialize: React.FC<{}> = () => {
     setRoute("guide");
   };
 
-  const isChromeBrowser = isChrome();
+  const isChromeBrowser = validBrowser();
 
   useEffect(() => {
       // ICMの初期化. localStorageから状態の復元.

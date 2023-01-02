@@ -6,6 +6,7 @@ import { TestUserScore } from "./firebase/database/user_score_test";
 import { MathWithLatex } from "./MathLive/MathWithLatex";
 import { ModalRouting } from "./ModalRouting";
 import { Routing } from "./Routing";
+import { validBrowser } from "./utils/browserDetect";
 
 // TODO: デバッグが終了したら削除すること
 // Debug.resetICM();
@@ -16,6 +17,8 @@ import { Routing } from "./Routing";
 // })
 
 // TestPracticeLogProgress();
+
+validBrowser();
 
 export const App = () => {
 
