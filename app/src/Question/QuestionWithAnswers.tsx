@@ -7,6 +7,7 @@ import { Check, Lightbulb } from "@mui/icons-material";
 import { QuestionType } from "./common";
 import { useRecoilState } from "recoil";
 import { modalState } from "../ModalRouting";
+import { MI } from "../MathLive/MathInline";
 
 type Props = QuestionType & {
   setResult?: (s: boolean) => void;
@@ -54,18 +55,35 @@ export const QuestionWithAnswers: React.FC<Props> = ({
   }
 
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={5}>
+    <Grid container spacing={0.5}>
+      <Grid item xs={4}>
         <MathReadonly formula={expression} />
       </Grid>
-      <Grid item xs={1}>
-          {answerPlaceholder ? answerPlaceholder : null}
+      <Grid item xs={0.5} style={{display: "flex", justifyContent: "flex-end" }} >
+          {answerPlaceholder ? (
+            <MI f={answerPlaceholder} />
+          ) : null}
         </Grid>
-      {answers.map((_, i) => (
-        <Grid item xs key={i}>
-          <MathInput onChange={setUserAnswer(i)} />
-        </Grid>
-      ))}
+      {answers.map((_, i) => {
+        if (i === answers.length -1) {
+          return (
+            <Grid item xs key={i}>
+              <MathInput onChange={setUserAnswer(i)} />
+            </Grid>
+          )
+        } else {
+          return (
+            <>
+              <Grid item xs key={i}>
+                <MathInput onChange={setUserAnswer(i)} />
+              </Grid>
+              <Grid item xs={0.3} key={i}>
+                <MI f=",　" />
+              </Grid>
+            </>
+          )
+        }
+      })}
       <Grid item xs={1}>
         {
           feedback ? (
