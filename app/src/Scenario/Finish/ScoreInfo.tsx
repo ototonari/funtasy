@@ -41,6 +41,7 @@ export const ScoreInfo: React.FC<Props> = ({ testResultInfo }) => {
 
   const avarage = Math.ceil(testResultInfo.allTestAvarage * 10 * 10) / 10;
   const ownBestScore = Math.ceil(testResultInfo.ownBestScore.molecule * 10 * 10) / 10;
+  const isShowableUserDiviation = !Number.isNaN(testResultInfo.userDeviation);
 
   return (
     <>
@@ -54,7 +55,7 @@ export const ScoreInfo: React.FC<Props> = ({ testResultInfo }) => {
         </Typography>
       </Text>
 
-      <Text pl={2}>{`あなたの偏差値 ${testResultInfo.userDeviation}`}</Text>
+      {isShowableUserDiviation ? <Text pl={2}>{`あなたの偏差値 ${testResultInfo.userDeviation}`}</Text> : null}
 
       <Text pl={2}>
         {`テストの平均点: ${avarage}`}
