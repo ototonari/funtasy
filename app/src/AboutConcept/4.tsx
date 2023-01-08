@@ -192,10 +192,12 @@ export const About4: React.FC = () => {
                 conceptId: 4,
                 level: 0,
               })} */}
+              <ScrollBoxOnModal isNoOutline={true}>
               {prerequisiteConcepts(icm, {
                 conceptId: 4,
                 level: 0
               })}
+              </ScrollBoxOnModal>
           </Grid>
         </Grid>
       </Box>

@@ -71,6 +71,10 @@ export const Finish: React.FC<Props> = () => {
           <Title>理解度の推移</Title>
           <UnderstandingGraph testResultInfo={testResultInfo} />
 
+          <Space />
+          <BorderLine />
+          <Space />
+
           <PracticeProgress />
           <Space />
         </Grid>

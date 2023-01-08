@@ -9,7 +9,8 @@ import {
 import React, { useEffect, useState } from "react";
 
 // TODO: 本利用で公開する場合はリンクを差し替えること
-const getSurveyUrl = (uid: string) => `https://docs.google.com/forms/d/e/1FAIpQLSfes2FIRwuSrpTsR0vOPmDGKB016wXaSLKqCbfi1xzZqGRBpg/viewform?usp=pp_url&entry.900723457=${uid}`
+const getSurveyUrlForPresentation = (uid: string) => `https://docs.google.com/forms/d/e/1FAIpQLSfes2FIRwuSrpTsR0vOPmDGKB016wXaSLKqCbfi1xzZqGRBpg/viewform?usp=pp_url&entry.900723457=${uid}`
+const getSurveyUrl = (uid: string) => `https://docs.google.com/forms/d/e/1FAIpQLSdgdBQlKkgFC3hHEp3qsYiJTfWu1hISUmaD6Sv6-QUZHnFFWA/viewform?usp=pp_url&entry.900723457=${uid}`
 
 type Props = {
   uid: string

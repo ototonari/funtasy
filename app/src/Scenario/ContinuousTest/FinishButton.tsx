@@ -83,17 +83,24 @@ const FinishButtonWithDialog: React.FC<FinishButtonWithDialogProps> = ({
     setAnchorEl(null);
   };
   const popoverOpen = Boolean(anchorEl);
-  const popoverId = open ? 'simple-popover' : undefined;
+  const popoverId = popoverOpen ? 'simple-popover' : undefined;
+
+  const onClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (isTestMoreThanTwice) {
+      handleClickOpen();
+    } else {
+      popoverHandleClick(event);
+    }
+  }
 
   return (
     <>
       <LoadingButton
         variant="outlined"
-        // color="error"
+        color={isTestMoreThanTwice ? "info" : "warning"}
         sx={{ width: 100 }}
-        onClick={handleClickOpen}
+        onClick={onClickHandler}
         loading={isLoading}
-        disabled={!isTestMoreThanTwice}
       >
         終了する
       </LoadingButton>
@@ -128,19 +135,23 @@ const FinishButtonWithDialog: React.FC<FinishButtonWithDialogProps> = ({
             終了する
           </Button>
         </DialogActions>
-        {/* <Popover
+      </Dialog>
+      <Popover
         id={popoverId}
         open={popoverOpen}
         anchorEl={anchorEl}
         onClose={popoverHandleClose}
         anchorOrigin={{
-          vertical: 'bottom',
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
           horizontal: 'left',
         }}
       >
-        <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
-      </Popover> */}
-      </Dialog>
+        <Typography sx={{ p: 2 }}>テストは2回以上行ってください。</Typography>
+      </Popover>
     </>
   );
 };

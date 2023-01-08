@@ -40,7 +40,12 @@ export const PracticeProgress: React.FC<Props> = () => {
 
   return (
     <>
-      <Title>練習問題のやりこみ度</Title>
+      <Title>
+        練習問題のやりこみ度
+        <Typography variant="caption" paddingLeft={1}>
+          ※ 練習問題をどのくらい試したかの割合
+        </Typography>
+      </Title>
       <ResultView data={practiceLog} />
     </>
   );
