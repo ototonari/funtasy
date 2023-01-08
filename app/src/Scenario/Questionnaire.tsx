@@ -1,7 +1,9 @@
 import {
   Button,
+  Checkbox,
   FormControl,
   FormControlLabel,
+  FormGroup,
   FormLabel,
   Grid,
   Radio,
@@ -92,16 +94,22 @@ const QuestionnaireForm: React.FC<{ handleReady: (v: boolean) => void }> = ({
   const [genderValue, setGenderValue] = useState<null | string>(null);
   const [ageValue, setAgeValue] = useState<null | string>(null);
   const [haveTakenClassesValue, setHaveTakenClassesValue] = useState<
-    null | boolean
+    "true" | "false" | null
   >(null);
   const [confidenceValue, setConfidenceValue] = useState<null | number>(null);
+
+  const [goodOrNotSubject, setGoodOrNotSubject] = useState<{good: string[], not: string[]}>({
+    good: [],
+    not: []
+  });
 
   useEffect(() => {
     const user = new User(
       genderValue,
       ageValue,
       haveTakenClassesValue,
-      confidenceValue
+      confidenceValue,
+      goodOrNotSubject,
     );
     if (user.isValid()) {
       console.log("QuestionnaireForm: valid user.");
@@ -111,7 +119,7 @@ const QuestionnaireForm: React.FC<{ handleReady: (v: boolean) => void }> = ({
     } else {
       console.log("QuestionnaireForm: invalid user.");
     }
-  }, [genderValue, ageValue, haveTakenClassesValue, confidenceValue]);
+  }, [genderValue, ageValue, haveTakenClassesValue, confidenceValue, goodOrNotSubject]);
 
   return (
     <div>
@@ -150,7 +158,7 @@ const QuestionnaireForm: React.FC<{ handleReady: (v: boolean) => void }> = ({
 
       <FormControl>
         <FormLabel id="have-taken-classes-group-id">
-          高校数学の数１の授業を受けたことがあるか
+          {"高校数学の数１の授業を受けたことがあるか"}
         </FormLabel>
         <RadioGroup
           row
@@ -158,25 +166,29 @@ const QuestionnaireForm: React.FC<{ handleReady: (v: boolean) => void }> = ({
           onChange={handleChange(setHaveTakenClassesValue)}
         >
           <FormControlLabel
-            value={true}
+            value={"true"}
             control={<Radio />}
             label="受けたことがある"
           />
           <FormControlLabel
-            value={false}
+            value={"false"}
             control={<Radio />}
             label="受けたことがない"
           />
         </RadioGroup>
       </FormControl>
       <Space />
-      
+
       {/* TODO: 授業を受けたことがある人を対象に、得意・不得意の章を選択できる項目の追加 */}
+      <SubjectsWhichYouGoodOrNot
+        selectableState={haveTakenClassesValue}
+        setGoodOrNotSubject={setGoodOrNotSubject}
+      />
+      <Space />
 
       <FormControl>
         <FormLabel id="confidence-group-id">
-          今回のテーマである2次方程式の解き方についての自信を5段階で表すならば（1: 自信がない, 5:
-          自信がある）
+          {"今回のテーマである2次方程式の解き方についての自信を5段階で表すならば（1: 自信がない, 5: 自信がある）"}
         </FormLabel>
         <RadioGroup
           row
@@ -198,19 +210,22 @@ const QuestionnaireForm: React.FC<{ handleReady: (v: boolean) => void }> = ({
 class User {
   gender: string | null;
   age: string | null;
-  haveTakenClasses: boolean | null;
+  haveTakenClasses: "true" | "false" | null;
   confidence: number | null;
+  goodOrNotSubjects: {good: string[], not: string[]};
 
   constructor(
     gender: string = null,
     age: string = null,
-    haveTakenClasses: boolean = null,
-    confidence: number = null
+    haveTakenClasses: "true" | "false" | null = null,
+    confidence: number = null,
+    goodOrNotSubjects: {good: string[], not: string[]}
   ) {
     this.gender = gender;
     this.age = age;
     this.haveTakenClasses = haveTakenClasses;
     this.confidence = confidence;
+    this.goodOrNotSubjects = goodOrNotSubjects;
   }
 
   isValid = (): boolean => {
@@ -223,11 +238,107 @@ class User {
   };
 
   toUserInfoParam = (): UserInfoType => {
+    const _haveTakenClasses = this.haveTakenClasses === "true";
     return {
       gender: this.gender,
       age: this.age,
-      haveTakenClasses: this.haveTakenClasses,
+      haveTakenClasses: _haveTakenClasses,
       confidence: this.confidence,
+      goodSubjects: _haveTakenClasses ? this.goodOrNotSubjects.good : [],
+      notGoodSubjects: _haveTakenClasses ? this.goodOrNotSubjects.not : [],
     };
   };
 }
+
+type SubjectsWhichYouGoodOrNotType = {
+  selectableState: "true" | "false" | null;
+  setGoodOrNotSubject: (value: any) => void;
+};
+
+const SubjectsWhichYouGoodOrNot: React.FC<SubjectsWhichYouGoodOrNotType> = ({
+  selectableState,
+  setGoodOrNotSubject,
+}) => {
+  const concepts: string[] = [
+    "数と式",
+    "集合と命題",
+    "2次関数",
+    "図形と軽量",
+    "データの分析",
+  ];
+
+  const [checked, setChecked] = useState(concepts.map((_) => [false, false]));
+  const updateGoodSubject = (index: number) => () => {
+    const newChecked = [...checked];
+    newChecked[index] = [true, false];
+    setChecked(newChecked);
+
+    // 科目一覧をセットする
+    const goodSubjects = concepts.filter((c, i) => newChecked[i][0]);
+    const notGoodSubjects = concepts.filter((c, i) => newChecked[i][1]);
+    setGoodOrNotSubject({
+      good: goodSubjects,
+      not: notGoodSubjects,
+    });
+  };
+  const updateNotGoodSubject = (index: number) => () => {
+    const newChecked = [...checked];
+    newChecked[index] = [false, true];
+    setChecked(newChecked);
+
+    // 科目一覧をセットする
+    const goodSubjects = concepts.filter((c, i) => newChecked[i][0]);
+    const notGoodSubjects = concepts.filter((c, i) => newChecked[i][1]);
+    setGoodOrNotSubject({
+      good: goodSubjects,
+      not: notGoodSubjects,
+    });
+  };
+
+  if (selectableState !== "true") return null;
+
+  return (
+    <Grid container>
+      <Grid item xs={6}>
+        <FormControl>
+          <FormGroup>
+            <FormLabel id="good-subjects-id">得意な科目</FormLabel>
+            {concepts.map((c, i) => (
+              <FormControlLabel
+                id="good-subjects-id"
+                key={c}
+                label={c}
+                control={
+                  <Checkbox
+                    checked={checked[i][0]}
+                    onChange={updateGoodSubject(i)}
+                  />
+                }
+              />
+            ))}
+          </FormGroup>
+        </FormControl>
+      </Grid>
+      <Grid item xs={6}>
+        <FormControl>
+          <FormGroup>
+            <FormLabel id="not-good-subjects-id">不得意な科目</FormLabel>
+            {concepts.map((c, i) => (
+              <FormControlLabel
+                id="not-good-subjects-id"
+                key={c}
+                label={c}
+                control={
+                  <Checkbox
+                    checked={checked[i][1]}
+                    onChange={updateNotGoodSubject(i)}
+                  />
+                }
+              />
+            ))}
+          </FormGroup>
+        </FormControl>
+      </Grid>
+    </Grid>
+  );
+};

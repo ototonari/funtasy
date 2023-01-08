@@ -7,6 +7,8 @@ export type UserInfoType = {
   age: string
   haveTakenClasses: boolean,
   confidence: number,
+  goodSubjects: string[],
+  notGoodSubjects: string[],
 }
 
 export const UserInfo = {
