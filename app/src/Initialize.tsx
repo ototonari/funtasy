@@ -125,6 +125,9 @@ const SkeletonCompoent = () => (
             <Typography variant={"body1"}>
               <Skeleton />
             </Typography>
+            <Typography variant={"body1"}>
+              <Skeleton />
+            </Typography>
           </Text>
           <Space />
         </Grid>

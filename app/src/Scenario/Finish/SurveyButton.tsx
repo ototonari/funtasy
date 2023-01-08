@@ -8,7 +8,16 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 
-export const SurveyButton: React.FC<{}> = ({}) => {
+// TODO: 本利用で公開する場合はリンクを差し替えること
+const getSurveyUrl = (uid: string) => `https://docs.google.com/forms/d/e/1FAIpQLSfes2FIRwuSrpTsR0vOPmDGKB016wXaSLKqCbfi1xzZqGRBpg/viewform?usp=pp_url&entry.900723457=${uid}`
+
+type Props = {
+  uid: string
+}
+
+export const SurveyButton: React.FC<Props> = ({uid}) => {
+  const surveyUrl = getSurveyUrl(uid);
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -26,7 +35,7 @@ export const SurveyButton: React.FC<{}> = ({}) => {
         color="success"
         sx={{ width: 120 }}
         // onClick={handleClickOpen}
-        href="https://forms.gle/K7UbQxAMur7gsyTy9"
+        href={surveyUrl}
         target="_blank"
       >
         アンケート

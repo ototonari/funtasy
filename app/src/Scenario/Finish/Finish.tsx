@@ -46,7 +46,7 @@ export const Finish: React.FC<Props> = () => {
           </Button>
         </Grid>
         <Grid item xs={2} style={{display: "flex", justifyContent: "flex-end" }}>
-          <SurveyButton />
+          <SurveyButton uid={uid} />
         </Grid>
       </Grid>
 

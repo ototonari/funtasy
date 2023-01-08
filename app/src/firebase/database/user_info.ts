@@ -5,6 +5,10 @@ const path = "UserInfo";
 export type UserInfoType = {
   gender: string
   age: string
+  haveTakenClasses: boolean,
+  confidence: number,
+  goodSubjects: string[],
+  notGoodSubjects: string[],
 }
 
 export const UserInfo = {
