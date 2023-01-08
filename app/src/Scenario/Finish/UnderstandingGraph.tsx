@@ -82,6 +82,7 @@ export const UnderstandingGraph: React.FC<Props> = ({ testResultInfo }) => {
               letterSpacing: 10,
             },
           }}
+          domain={[0, 100]}
           label="理解度(%)"
           axisLabelComponent={<VictoryLabel dy={-25} />}
         />
