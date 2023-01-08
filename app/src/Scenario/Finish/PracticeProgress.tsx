@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Space } from "../ContinuousTest/utils";
-import { Title, Text, ab } from "../../AboutConcept/utils";
+import { Title, Text } from "../../AboutConcept/utils";
 import { Skeleton, Typography } from "@mui/material";
 import {
   UserActivity,
@@ -73,13 +73,13 @@ const ResultView: React.FC<{ data: UserActivityType["practiceLog"] }> = ({
   // console.log("ok: ", p4OkCount, p39OkCount);
 
   return (
-    <Text pl={2}>
-      <Typography variant="subtitle1">{`因数分解: ${Math.ceil(
+    <div>
+      <Typography variant="subtitle1" paddingLeft={2}>{`因数分解: ${Math.ceil(
         (p4OkCount / totalP4practiceCount) * 100
       )}%`}</Typography>
-      <Typography variant="subtitle1">{`2次方程式: ${Math.ceil(
+      <Typography variant="subtitle1" paddingLeft={2}>{`2次方程式: ${Math.ceil(
         (p39OkCount / totalP39PracticeCount) * 100
       )}%`}</Typography>
-    </Text>
+    </div>
   );
 };
