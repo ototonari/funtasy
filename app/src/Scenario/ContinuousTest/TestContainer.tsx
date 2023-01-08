@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { Box } from "@mui/system";
+import { Lightbulb } from "@mui/icons-material";
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { ContinuousTestState, continuousTestStateToScore, questionsToState, questionsUpdater, TestStateType } from ".";
@@ -46,6 +47,7 @@ export function TestContainer({ state }: Props) {
   } else {
     return (
       <div>
+        <DoneDescription state={state} />
         <Test
           testLabel={`次の式を因数分解せよ。`}
           questions={p4}
@@ -134,3 +136,16 @@ const Description: React.FC = () => (
     高校数学1の因数分解と2次方程式の理解度を確認してみましょう。
   </Typography>
 )
+
+const DoneDescription: React.FC<Props> = ({state}) => {
+  if (state === "done") {
+    return (
+      <div style={{ padding: 10, backgroundColor: "rgb(235 235 235)", borderRadius: 5, display: "flex" }} >
+        <Lightbulb fontSize="small" color="primary" />
+        <Typography variant="body2" >
+        ボタンから振り返ってみましょう。
+      </Typography>
+      </div>
+    )
+  } else return null;
+}
