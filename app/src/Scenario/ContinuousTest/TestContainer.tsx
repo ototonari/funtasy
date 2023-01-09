@@ -120,7 +120,7 @@ export function Test({ testLabel, questions, isFeedback }: TestProps) {
       <div style={{ marginLeft: 20 }}>
         {questions.map((q, i) => (
           <QuestionWithAnswers
-            key={i}
+            key={q.expression}
             {...q}
             setResult={setResult(i)}
             feedback={isFeedback}
