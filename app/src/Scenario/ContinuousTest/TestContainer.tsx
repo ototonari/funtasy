@@ -132,9 +132,14 @@ export function Test({ testLabel, questions, isFeedback }: TestProps) {
 }
 
 const Description: React.FC = () => (
-  <Typography variant="subtitle1" >
-    高校数学1の因数分解と2次方程式の理解度を確認してみましょう。
-  </Typography>
+  <div>
+    <Typography variant="subtitle1" >
+      高校数学1の因数分解と2次方程式の理解度を確認してみましょう。
+    </Typography>
+    <Typography variant="subtitle1" >
+      分からない問題があった場合は飛ばしてください。
+    </Typography>
+  </div>
 )
 
 const DoneDescription: React.FC<Props> = ({state}) => {
