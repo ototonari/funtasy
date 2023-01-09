@@ -102,7 +102,7 @@ const FinishButtonWithDialog: React.FC<FinishButtonWithDialogProps> = ({
         onClick={onClickHandler}
         loading={isLoading}
       >
-        終了する
+        学習結果
       </LoadingButton>
       <Dialog
         open={open}
@@ -113,10 +113,10 @@ const FinishButtonWithDialog: React.FC<FinishButtonWithDialogProps> = ({
         <DialogTitle id="alert-dialog-title">テストを終了します</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            テストを終了して最後のページに進みますか？
+            テストを終了して学習結果画面に進みますか？
           </DialogContentText>
           <DialogContentText id="alert-dialog-description">
-            最後のページではあなたの学習成果を見ることができます。
+            あなたの学習成果を見ることができます。
           </DialogContentText>
           {/* <DialogContentText id="alert-dialog-description">
             ※ テストは何度も受け直すことが可能です。
