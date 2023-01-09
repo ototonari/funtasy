@@ -70,7 +70,7 @@ export const Guide: React.FC<Props> = () => {
           </Text>
           <Space />
 
-          <Title>アンケート調査のお礼</Title>
+          {/* <Title>アンケート調査のお礼</Title>
           <Text pl={2}>
           {ab([
               // TODO: 本利用で公開する場合はコメントアウトを外すこと
@@ -79,7 +79,7 @@ export const Guide: React.FC<Props> = () => {
               "当選時期は2月中を予定し、アンケートに記入いただいたメールアドレスにギフトコードを送付いたします。",
             ])}
           </Text>
-          <Space />
+          <Space /> */}
         </Grid>
       </Grid>
       <Grid

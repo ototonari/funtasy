@@ -17,7 +17,7 @@ type Props = {
 }
 
 export const SurveyButton: React.FC<Props> = ({uid}) => {
-  const surveyUrl = getSurveyUrl(uid);
+  const surveyUrl = getSurveyUrlForPresentation(uid);
 
   const [open, setOpen] = React.useState(false);
 
