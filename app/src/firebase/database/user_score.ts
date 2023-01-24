@@ -175,6 +175,70 @@ export const measuringConceptComprehension = (answers: UserScoreType["answers"])
   return comprehensionMap;
 }
 
+const getAll = async () => {
+  try {
+    const dbRef = ref(getDatabase());
+    const snapshot = await get(child(dbRef, `${path}`));
+
+    if (!snapshot.exists()) {
+      return null;
+    }
+
+    const userScores = snapshot.val() as UserScoresType;
+    if (Object.keys(userScores).length === 0) {
+      return null;
+    }
+
+    console.log(userScores);
+
+    return userScores;
+
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export const surveyInfos = async () => {
+  const userScores = await UserScore.getAll();
+
+  // ユーザーID毎にスコアを格納する Map
+  const userScoreMap = new Map<string, UserScoreType[]>();
+  Object.entries(userScores).map(([key, value]) => userScoreMap.set(key, value));
+  
+
+  // ユーザー数
+  let userCount = 0;
+
+  // 一回目のスコアの合計
+  let firstScoreSum = 0;
+
+  // ユーザーごとの最高の成績だったテストのスコア合計
+  let bestScorePerUserSum = 0;
+
+  let log = "";
+
+  userScoreMap.forEach((value, uid) => {
+    userCount += 1;
+    // 初回のスコアを取得
+    firstScoreSum += value[0].score.molecule;
+    // ユーザー毎に最高得点のスコアを取得する。
+    bestScorePerUserSum += extractHighestScore(value.map((v) => v.score)).molecule;
+    value.forEach((score, times) => {
+      log += `${uid}, ${score.score.molecule}, ${times + 1}\n`;
+    })
+  });
+
+  console.log(log);
+  console.log("user: ", userCount);
+
+  const firstScoreAvg = firstScoreSum / userCount;
+  console.log("firstScoreAvg: ", firstScoreAvg);
+
+  const bestScoreAvg = bestScorePerUserSum / userCount;
+  console.log("bestScoreAvg: ", bestScoreAvg);
+
+}
+
 export const UserScore = {
   init: async (uid: string) => {
     const db = getDatabase();
@@ -200,6 +264,8 @@ export const UserScore = {
       return [];
     }
   },
+
+  getAll,
 
   appendScore: async (uid: string, userScore: UserScoreType) => {
     const dbRef = ref(getDatabase(), `${path}/${uid}`);

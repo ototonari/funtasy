@@ -33,28 +33,72 @@ export type PracticeLog = {
   modifiedAt: string;
 };
 
-const initValue: UserActivityType = {
-  sceneLog: [],
-  practiceLog: [],
-};
+type UserActivitiesType = {
+  [key: string]: UserActivityType;
+}
 
-const getActiveLog = async (
-  uid: string,
-  ref: DatabaseReference
-): Promise<UserActivityType> => {
+const surveyInfos = async () => {
   try {
-    const snapshot = await get(child(ref, `${path}/${uid}`));
-    if (snapshot.exists()) {
-      const value = snapshot.val() as UserActivityType;
+    const dbRef = ref(getDatabase());
+    const snapshot = await get(
+      child(dbRef, `${path}`)
+    );
 
-      return value;
-    } else {
-      return initValue;
+    if (!snapshot.exists()) {
+      return
     }
+
+    const userActivities = snapshot.val() as UserActivitiesType;
+
+    // ユーザーID毎にログを格納する Map
+    const userActiveMap = new Map<string, UserActivityType>();
+    Object.entries(userActivities).map(([key, value]) => userActiveMap.set(key, value));
+
+    let totalUserCount = 0;
+    let serveyCount = 0;
+    let testFirst = 0;
+    let testFinal = 0;
+    let seeStudyContents = 0;
+    let usePractice = 0;
+    let useResult = 0;
+
+    userActiveMap.forEach(({sceneLog, practiceLog}, uid) => {
+
+      totalUserCount += 1;
+      if (practiceLog !== null) {
+        usePractice += 1;
+      }
+      if (sceneLog !== null) {
+        if (sceneLog.some((v) => v.name.includes("concept"))) {
+          seeStudyContents += 1;
+        }
+        if (sceneLog.some((v) => v.name === "questionnaire")) {
+          serveyCount += 1;
+        }
+        if (sceneLog.some((v) => v.name === "test:init")) {
+          testFirst += 1;
+        }
+        if (sceneLog.some((v) => v.name === "test:done")) {
+          testFinal += 1;
+        }
+        if (sceneLog.some((v) => v.name === "result")) {
+          useResult += 1;
+        }  
+      }
+    })
+
+    console.log("totalUserCount: ", totalUserCount);
+    console.log("serveyCount: ", serveyCount);
+    console.log("testFirst: ", testFirst);
+    console.log("testFinal: ", testFinal);
+    console.log("seeStudyContents: ", seeStudyContents);
+    console.log("usePractice: ", usePractice);
+    console.log("useResult: ", useResult);
+    
   } catch (error) {
-    return initValue;
+    console.error(error);
   }
-};
+}
 
 const updateScene = async (uid: string, sceneLog: SceneLog): Promise<void> => {
   const dbRef = ref(getDatabase(), `${path}/${uid}/${sceneLogKey}`);
@@ -162,4 +206,5 @@ export const UserActivity = {
   },
 
   getPracticeLog,
+  surveyInfos,
 };

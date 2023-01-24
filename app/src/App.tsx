@@ -10,6 +10,8 @@ import { Routing } from "./Routing";
 import { BaseContainer } from "./Scenario/utils";
 import { validBrowser } from "./utils/browserDetect";
 import { VirtualKeyboardSpace } from "./MathLive/utils";
+import { UserActivity } from "./firebase/database/user_activity";
+import { UserInfo } from "./firebase/database/user_info";
 
 // TODO: デバッグが終了したら削除すること
 // Debug.resetICM();
@@ -20,6 +22,8 @@ import { VirtualKeyboardSpace } from "./MathLive/utils";
 // })
 
 // TestPracticeLogProgress();
+
+UserInfo.surveyInfos();
 
 export const App = () => {
   // もし想定外のブラウザなら早期リターンで案内画面に遷移させる
