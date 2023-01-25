@@ -48,7 +48,7 @@ const WarningComponent = () => (
       </Grid>
       <Grid container marginTop={1}>
         <Grid item xs style={{display: "flex", alignItems: "center" }}>
-        <Typography variant="body2" style={{ padding: 10, backgroundColor: "rgb(235 235 235)", borderRadius: 5 }} >お手数ですが Google Chrome ブラウザでアクセスしてください。</Typography>
+        <Typography variant="body2" style={{ padding: 10, backgroundColor: "rgb(235 235 235)", borderRadius: 5 }} >お手数ですが Windows 又は Mac の Google Chrome ブラウザでアクセスしてください。</Typography>
         </Grid>
       </Grid>
   </BaseContainer>
