@@ -263,7 +263,7 @@ const SubjectsWhichYouGoodOrNot: React.FC<SubjectsWhichYouGoodOrNotType> = ({
     "数と式",
     "集合と命題",
     "2次関数",
-    "図形と軽量",
+    "図形と計量",
     "データの分析",
   ];
 
