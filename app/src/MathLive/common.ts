@@ -6,7 +6,7 @@ export const createMfeElement = (formula: string): MathfieldElement => {
   mfe.plonkSound = null;
   mfe.setOptions({
     virtualKeyboardMode: 'onfocus',
-    virtualKeyboards: "numeric functions"
+    virtualKeyboards: "numeric roman"
   });
   mfe.setAttribute("style", innerStyle);
   mfe.innerText = formula;
