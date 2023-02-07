@@ -198,7 +198,7 @@ const getAll = async () => {
   }
 }
 
-export const surveyInfos = async () => {
+const surveyInfos = async () => {
   const userScores = await UserScore.getAll();
 
   // ユーザーID毎にスコアを格納する Map
@@ -285,4 +285,6 @@ export const UserScore = {
 
   getHighestScore: getHighestScore,
   getStandardDeviationWithUserDeviation,
+
+  surveyInfos,
 }

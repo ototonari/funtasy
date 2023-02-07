@@ -25,6 +25,10 @@ import { UserInfo } from "./firebase/database/user_info";
 
 UserInfo.surveyInfos();
 
+UserActivity.surveyInfos();
+
+UserScore.surveyInfos();
+
 export const App = () => {
   // もし想定外のブラウザなら早期リターンで案内画面に遷移させる
   const isChromeBrowser = validBrowser();

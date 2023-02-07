@@ -57,6 +57,7 @@ const surveyInfos = async () => {
     let totalUserCount = 0;
     let serveyCount = 0;
     let testFirst = 0;
+    let testDoing = 0;
     let testFinal = 0;
     let seeStudyContents = 0;
     let usePractice = 0;
@@ -78,6 +79,9 @@ const surveyInfos = async () => {
         if (sceneLog.some((v) => v.name === "test:init")) {
           testFirst += 1;
         }
+        if (sceneLog.some((v) => v.name === "test:started")) {
+          testDoing += 1;
+        }
         if (sceneLog.some((v) => v.name === "test:done")) {
           testFinal += 1;
         }
@@ -90,9 +94,10 @@ const surveyInfos = async () => {
     console.log("totalUserCount: ", totalUserCount);
     console.log("serveyCount: ", serveyCount);
     console.log("testFirst: ", testFirst);
+    console.log("testDoing: ", testDoing);
     console.log("testFinal: ", testFinal);
     console.log("seeStudyContents: ", seeStudyContents);
-    console.log("usePractice: ", usePractice);
+    // console.log("usePractice: ", usePractice);
     console.log("useResult: ", useResult);
     
   } catch (error) {

@@ -35,6 +35,7 @@ const surveyInfos = async () => {
     const genderMap = new Map<string, number>();
     const goodMap = new Map<string, number>();
     const notGoodMap = new Map<string, number>();
+    const confidenceMap = new Map<number, number>();
     let haveTakenClassesCount = 0;
     let haveNotTakenClassesCount = 0;
 
@@ -48,6 +49,11 @@ const surveyInfos = async () => {
         genderMap.set(info.gender, 1);
       } else {
         genderMap.set(info.gender, genderMap.get(info.gender) + 1);
+      }
+      if (!confidenceMap.has(info.confidence)) {
+        confidenceMap.set(info.confidence, 1);
+      } else {
+        confidenceMap.set(info.confidence, confidenceMap.get(info.confidence) + 1);
       }
 
       if (!!info.goodSubjects) {
@@ -79,8 +85,18 @@ const surveyInfos = async () => {
 
     // ageMap.forEach((v, k) => console.log(k, v));
     // genderMap.forEach((v, k) => console.log(k, v));
-    // goodMap.forEach((v, k) => console.log(k, v));
-    notGoodMap.forEach((v, k) => console.log(k, v));
+    let goods = "";
+    goodMap.forEach((v, k) => goods += `${k}, ${v}\n`);
+
+    let notGoods = "";
+    notGoodMap.forEach((v, k) => notGoods += `${k}, ${v}\n`);
+
+    let confidences = "";
+    confidenceMap.forEach((v, k) => confidences += `${k}, ${v}\n`);
+
+    console.log("goods\n", goods);
+    console.log("notGoods\n", notGoods);
+    console.log("confidences\n", confidences);
 
     console.log("haveTakenClassesCount: ", haveTakenClassesCount);
     console.log("haveNotTakenClassesCount: ", haveNotTakenClassesCount);
